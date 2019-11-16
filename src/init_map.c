@@ -6,7 +6,7 @@
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 00:25:02 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/11/16 03:09:18 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/11/16 23:54:58 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ s_fdf *init_map(char **argv, s_fdf *fdf)
 	int z;
 	int fd;
 	char *line;
-	char *buf;
+	char **buf;
 	s_fdf *fdf_ptr;
 	
 	fdf_ptr = fdf;
@@ -41,19 +41,19 @@ s_fdf *init_map(char **argv, s_fdf *fdf)
 	fd = open(argv[1], O_RDONLY);
 	while (get_next_line(fd, &line) == 1)
 	{
-		buf = line;
+		buf = ft_strsplit (line, ' ');
 		x = 0;
-		while (*buf != '\0')
+		while (buf[x])
 		{
-			if (!(z = ft_atoi(buf)))
-				error(50);
+			z = ft_atoi(buf[x]);
 			fdf = next_step(fdf, x, y, z);
-			while (*buf != ' ' || *buf != '\0')
-				buf++;
 			x++;
 		}
-		ft_strdel(&line);
+		ft_printf("\n");
 		y++;
+		ft_strdel_split(buf);
+		buf = NULL;
+		ft_strdel(&line);
 	}
 	return (fdf_ptr);
 }

@@ -6,7 +6,7 @@
 #    By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/12 18:21:34 by dsandshr          #+#    #+#              #
-#    Updated: 2019/11/16 02:38:03 by dsandshr         ###   ########.fr        #
+#    Updated: 2019/11/17 01:00:11 by dsandshr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ DIRS_INCLUDE		:=	$(DIR_INCLUDE_FDF) $(DIR_INCLUDE_LIBFT)
 
 SRCS				:=	main.c \
 						error.c \
-						init_map.c
+						init_map.c \
+						draw.c
 
 OBJS				:=	$(SRCS:.c=.o)
 OBJ_WITH_DIR		:=	$(addprefix $(DIR_BIN), $(OBJS))

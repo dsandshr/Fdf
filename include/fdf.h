@@ -6,7 +6,7 @@
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 22:57:24 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/11/16 03:10:53 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/11/17 00:16:13 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 ** Lib
 */
 
+# include "mlx.h"
 # include "libft.h"
+# include <math.h>
 
 /*
 ** other defines
@@ -30,8 +32,8 @@
 
 typedef struct	l_mlx
 {
+	void		*mlxPtr;
 	void		*winPtr;
-	void		*initPtr;
 }				s_mlx;
 
 typedef struct	l_fdf
@@ -50,5 +52,5 @@ typedef struct	l_fdf
 
 void	error(int argc);
 s_fdf 	*init_map(char **argv, s_fdf *fdf);
-
+void	draw(s_mlx *mlx, s_fdf *fdf);
 #endif
