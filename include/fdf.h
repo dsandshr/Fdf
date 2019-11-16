@@ -6,7 +6,7 @@
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 22:57:24 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/11/16 02:36:50 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/11/16 03:10:53 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,6 @@ typedef struct	l_fdf
 */
 
 void	error(int argc);
-s_fdf	*init_and_check_map(char **argv, s_fdf *fdf);
+s_fdf 	*init_map(char **argv, s_fdf *fdf);
 
 #endif
