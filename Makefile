@@ -5,67 +5,87 @@
 #                                                     +:+ +:+         +:+      #
 #    By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/10/12 18:21:34 by dsandshr          #+#    #+#              #
-#    Updated: 2019/11/22 21:13:53 by dsandshr         ###   ########.fr        #
+#    Created: 2019/11/22 21:36:40 by dsandshr          #+#    #+#              #
+#    Updated: 2019/11/22 21:51:08 by dsandshr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME				:=	fdf
-DIR_SRC				:=	./src
-DIR_INCLUDE_FDF		:=	./include
-DIR_LIBFT			:=	./libft/
-DIR_INCLUDE_LIBFT	:=	./libft/include
-DIR_INCLIDE_MLX		:=	./minilibx/
-DIR_BIN				:=	bin/
-DIRS_INCLUDE		:=	$(DIR_INCLUDE_FDF) $(DIR_INCLUDE_LIBFT) $(DIR_INCLIDE_MLX)
+NAME = fdf
 
-SRCS				:=	main.c \
-						error.c \
-						init_map.c \
-						affairs.c
+CC = gcc
+FLAGS = -Wall -Werror -Wextra
+LIBRARIES = -lmlx -lm -lft -L$(LIBFT_DIRECTORY) -L$(MINILIBX_DIRECTORY) -framework OpenGL -framework AppKit
+INCLUDES = -I$(HEADERS_DIRECTORY) -I$(LIBFT_HEADERS) -I$(MINILIBX_HEADERS)
 
-OBJS				:=	$(SRCS:.c=.o)
-OBJ_WITH_DIR		:=	$(addprefix $(DIR_BIN), $(OBJS))
-HEADERS				:=	fdf.h
-LIBFT				:=	libft.a
+LIBFT = $(LIBFT_DIRECTORY)libft.a
+LIBFT_DIRECTORY = ./libft/
+LIBFT_HEADERS = $(LIBFT_DIRECTORY)includes/
 
-CFLAGS				:=	-Wall -Werror -Wextra
-CFLAG				:=	-c
-NFLAG				:=	-o
-IFLAG				:=	-I
-CC					:=	gcc
+MINILIBX = $(MINILIBX_DIRECTORY)libmlx_linux.a
+MINILIBX_DIRECTORY = ./minilibx/
+MINILIBX_HEADERS = $(MINILIBX_DIRECTORY)
 
-MAKE_LIBFT			:=	make -C $(DIR_LIBFT)
-REMOVE				:=	rm -rf
+HEADERS_LIST = fdf.h
+HEADERS_DIRECTORY = ./includes/
+HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
-vpath %.c $(DIR_SRC)
-vpath %.o $(DIR_BIN)
-vpath %.h $(DIR_INCLUDE_FDF)
-vpath %.a $(DIR_LIBFT)
+SOURCES_DIRECTORY = ./src/
+SOURCES_LIST = main.c \
+				error.c \
+				init_map.c \
+				affairs.c
+SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 
-all: $(LIBFT) $(NAME)
+OBJECTS_DIRECTORY = bin/
+OBJECTS_LIST = $(patsubst %.c, %.o, $(SOURCES_LIST))
+OBJECTS	= $(addprefix $(OBJECTS_DIRECTORY), $(OBJECTS_LIST))
 
-$(NAME): $(LIBFT) $(OBJS)
-		$(CC) $(CFLAGS) $(OBJ_WITH_DIR) $(NFLAG) $@ $(DIR_LIBFT)$(LIBFT)
+# COLORS
 
-$(OBJS): %.o:%.c $(HEADERS) | $(DIR_BIN)
-		$(CC) $(CFLAG) $(CFLAGS) $< $(addprefix $(IFLAG), $(DIRS_INCLUDE)) $(NFLAG) $(DIR_BIN)$@
+GREEN = \033[0;32m
+RED = \033[0;31m
+RESET = \033[0m
 
-$(DIR_BIN):
-		mkdir -p $@
+.PHONY: all clean fclean re
+
+all: $(NAME)
+
+$(NAME): $(LIBFT) $(MINILIBX) $(OBJECTS_DIRECTORY) $(OBJECTS)
+	@$(CC) $(FLAGS) $(LIBRARIES) $(INCLUDES) $(OBJECTS) -o $(NAME)
+	@echo "\n$(NAME): $(GREEN)object files were created$(RESET)"
+	@echo "$(NAME): $(GREEN)$(NAME) was created$(RESET)"
+
+$(OBJECTS_DIRECTORY):
+	@mkdir -p $(OBJECTS_DIRECTORY)
+	@echo "$(NAME): $(GREEN)$(OBJECTS_DIRECTORY) was created$(RESET)"
+
+$(OBJECTS_DIRECTORY)%.o : $(SOURCES_DIRECTORY)%.c $(HEADERS)
+	@$(CC) $(FLAGS) -c $(INCLUDES) $< -o $@
+	@echo "$(GREEN).$(RESET)\c"
+
 $(LIBFT):
-		$(MAKE_LIBFT)
+	@echo "$(NAME): $(GREEN)Creating $(LIBFT)...$(RESET)"
+	@$(MAKE) -sC $(LIBFT_DIRECTORY)
+
+$(MINILIBX):
+	@echo "$(NAME): $(GREEN)Creating $(MINILIBX)...$(RESET)"
+	@sudo $(MAKE) -sC $(MINILIBX_DIRECTORY)
 
 clean:
-		$(REMOVE) $(OBJ_WITH_DIR)
-		$(REMOVE) $(DIR_BIN)
-		$(MAKE_LIBFT) clean
+	@$(MAKE) -sC $(LIBFT_DIRECTORY) clean
+	@$(MAKE) -sC $(MINILIBX_DIRECTORY) clean
+	@rm -rf $(OBJECTS_DIRECTORY)
+	@echo "$(NAME): $(RED)$(OBJECTS_DIRECTORY) was deleted$(RESET)"
+	@echo "$(NAME): $(RED)object files were deleted$(RESET)"
 
 fclean: clean
-		$(REMOVE) $(NAME)
-		$(MAKE_LIBFT) fclean
+	@rm -f $(MINILIBX)
+	@echo "$(NAME): $(RED)$(MINILIBX) was deleted$(RESET)"
+	@rm -f $(LIBFT)
+	@echo "$(NAME): $(RED)$(LIBFT) was deleted$(RESET)"
+	@rm -f $(NAME)
+	@echo "$(NAME): $(RED)$(NAME) was deleted$(RESET)"
 
-re: fclean all
-
-.PHONY: clean fclean re
-.SILENT: all $(NAME) $(OBJS) $(DIR_BIN) $(LIBFT) clean fclean re
+re:
+	@$(MAKE) fclean
+	@$(MAKE) al
