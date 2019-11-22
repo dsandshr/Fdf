@@ -6,7 +6,7 @@
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 22:57:24 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/11/17 00:16:13 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/11/22 20:53:42 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,12 @@ typedef struct	l_fdf
 	struct l_fdf		*next;
 }				s_fdf;
 
+typedef struct l_map
+{
+	int					**map;
+	int					x;
+	int					y;
+}				s_map;
 
 
 /*
@@ -51,6 +57,7 @@ typedef struct	l_fdf
 */
 
 void	error(int argc);
-s_fdf 	*init_map(char **argv, s_fdf *fdf);
+s_fdf 	*init_map(char **argv, s_fdf *fdf, s_map *map);
 void	draw(s_mlx *mlx, s_fdf *fdf);
+void	fdf_affairs(s_fdf *fdf, s_mlx *mlx, s_map *map);
 #endif
