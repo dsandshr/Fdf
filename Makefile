@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/09/18 08:27:12 by ksharlen          #+#    #+#              #
-#    Updated: 2019/11/23 22:02:34 by dsandshr         ###   ########.fr        #
+#    Created: 2019/11/23 22:09:17 by dsandshr          #+#    #+#              #
+#    Updated: 2019/11/23 22:30:44 by dsandshr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,6 @@ INCLUDE_FDF			:= fdf.h
 SRCS				:= main.c\
 						init_map.c\
 						error.c\
-						draw.c\
 						affairs.c
 
 OBJS				:= $(SRCS:.c=.o)
@@ -43,7 +42,7 @@ INCLUDES			:= $(INCLUDE_FDF) $(INCLUDE_LIBFT) $(INCLUDE_MLX)
 
 FRAMEWORKS			:= -lmlx -lXext -lX11
 
-CC					:= gcc
+CC					:= gcc -O3
 CFLAGS				:= -g
 OFLAGS				:= -c
 IFLAGS				:= -I

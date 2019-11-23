@@ -6,7 +6,7 @@
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:11:06 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/11/22 20:52:31 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/11/23 23:49:56 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ static s_mlx	*mlx_sinit(s_mlx *mlx)
 		exit (-1);
 	mlx->mlxPtr = NULL;
 	mlx->winPtr = NULL;
+	mlx->imgPtr = NULL;
+	mlx->imgData = NULL;
+	mlx->bpp = 0;
+	mlx->endian = 0;
+	mlx->size_l = 0;
 	return(mlx);
 }
 
