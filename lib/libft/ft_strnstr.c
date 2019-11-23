@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   affairs.c                                          :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/22 20:24:23 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/11/23 21:23:50 by dsandshr         ###   ########.fr       */
+/*   Created: 2019/04/23 11:31:22 by ksharlen          #+#    #+#             */
+/*   Updated: 2019/10/12 16:23:40 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-void	fdf_affairs(s_fdf *fdf, s_mlx *mlx, s_map *map)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	fdf = NULL;
-	map = NULL;
-	if (!(mlx->mlxPtr = mlx_init()))
-		exit (-1);
-	if (!(mlx->winPtr = mlx_new_window(mlx->mlxPtr, WIN_X, WIN_Y,\
-		"Dsandshr's & Dmandalo's filler")))
-		exit (-1);
-	mlx_loop(mlx->mlxPtr);
+	size_t		len_little;
+	const char	*ret_str;
+
+	len_little = ft_strlen(little);
+	ret_str = big;
+	if (!len_little)
+		return ((char *)ret_str);
+	while (*big && (len-- >= len_little))
+	{
+		if (!(ft_memcmp(big, little, len_little)))
+		{
+			ret_str = big;
+			return ((char *)ret_str);
+		}
+		big++;
+	}
+	return (NULL);
 }

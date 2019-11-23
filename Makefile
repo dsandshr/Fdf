@@ -5,87 +5,89 @@
 #                                                     +:+ +:+         +:+      #
 #    By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/11/22 21:36:40 by dsandshr          #+#    #+#              #
-#    Updated: 2019/11/22 21:51:08 by dsandshr         ###   ########.fr        #
+#    Created: 2019/09/18 08:27:12 by ksharlen          #+#    #+#              #
+#    Updated: 2019/11/23 22:02:34 by dsandshr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fdf
+NAME				:= fdf
+DIR_SRCS			:= src/
+DIR_OBJS 			:= bin/
+DIR_INCLUDE_FDF 	:= include/
+DIR_INCLUDE_LIBFT	:= lib/libft/include
+DIR_INCLUDE_MLX		:= lib/minilibx/
+DIR_TMP				:= tmp/
+DIR_LIB				:= lib/
+DIR_LIBFT			:= lib/libft/
+DIR_MLX				:= lib/minilibx/
 
-CC = gcc
-FLAGS = -Wall -Werror -Wextra
-LIBRARIES = -lmlx -lm -lft -L$(LIBFT_DIRECTORY) -L$(MINILIBX_DIRECTORY) -framework OpenGL -framework AppKit
-INCLUDES = -I$(HEADERS_DIRECTORY) -I$(LIBFT_HEADERS) -I$(MINILIBX_HEADERS)
+INCLUDE_LIBFT		:= libft.h
+INCLUDE_MLX			:= mlx.h
+LIBFT				:= libft.a
+MLX					:= libmlx.a
 
-LIBFT = $(LIBFT_DIRECTORY)libft.a
-LIBFT_DIRECTORY = ./libft/
-LIBFT_HEADERS = $(LIBFT_DIRECTORY)includes/
+DIR_LINAL			:= ./lib/linal/source
+DIR_INCLUDE_LINAL	:= ./lib/linal/include/
 
-MINILIBX = $(MINILIBX_DIRECTORY)libmlx_linux.a
-MINILIBX_DIRECTORY = ./minilibx/
-MINILIBX_HEADERS = $(MINILIBX_DIRECTORY)
+INCLUDE_FDF			:= fdf.h
+SRCS				:= main.c\
+						init_map.c\
+						error.c\
+						draw.c\
+						affairs.c
 
-HEADERS_LIST = fdf.h
-HEADERS_DIRECTORY = ./includes/
-HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
+OBJS				:= $(SRCS:.c=.o)
+DIRS_INCLUDE		:= $(DIR_INCLUDE_LIBFT) $(DIR_INCLUDE_FDF) $(DIR_INCLUDE_MLX) $(DIR_INCLUDE_LINAL)
 
-SOURCES_DIRECTORY = ./src/
-SOURCES_LIST = main.c \
-				error.c \
-				init_map.c \
-				affairs.c
-SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
+INCLUDES			:= $(INCLUDE_FDF) $(INCLUDE_LIBFT) $(INCLUDE_MLX)
 
-OBJECTS_DIRECTORY = bin/
-OBJECTS_LIST = $(patsubst %.c, %.o, $(SOURCES_LIST))
-OBJECTS	= $(addprefix $(OBJECTS_DIRECTORY), $(OBJECTS_LIST))
+FRAMEWORKS			:= -lmlx -lXext -lX11
 
-# COLORS
+CC					:= gcc
+CFLAGS				:= -g
+OFLAGS				:= -c
+IFLAGS				:= -I
+NFLAGS				:= -o
 
-GREEN = \033[0;32m
-RED = \033[0;31m
-RESET = \033[0m
+CREATE_DIR	:= mkdir -p
+REMOVE		:= rm -rf
+MAKE_LIBFT	:= make -C $(DIR_LIBFT)
+MAKE_MLX	:= make -C $(DIR_MLX)
 
-.PHONY: all clean fclean re
+vpath %.c $(DIR_SRCS) $(DIR_LINAL)
+vpath %.o $(DIR_OBJS)
+vpath %.h $(DIRS_INCLUDE)
+vpath %.a $(DIR_LIBFT) $(DIR_MLX)
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(MINILIBX) $(OBJECTS_DIRECTORY) $(OBJECTS)
-	@$(CC) $(FLAGS) $(LIBRARIES) $(INCLUDES) $(OBJECTS) -o $(NAME)
-	@echo "\n$(NAME): $(GREEN)object files were created$(RESET)"
-	@echo "$(NAME): $(GREEN)$(NAME) was created$(RESET)"
+$(NAME): $(OBJS) $(LIBFT) $(MLX)
+	$(CC) $(CFLAGS) $(addprefix $(DIR_OBJS), $(OBJS)) $(addprefix $(DIR_LIBFT), $(LIBFT)) $(addprefix $(DIR_MLX), $(MLX)) $(NFLAGS) $@ $(FRAMEWORKS)
 
-$(OBJECTS_DIRECTORY):
-	@mkdir -p $(OBJECTS_DIRECTORY)
-	@echo "$(NAME): $(GREEN)$(OBJECTS_DIRECTORY) was created$(RESET)"
+$(OBJS): %.o:%.c $(INCLUDES) | $(DIR_OBJS)
+	$(CC) $(OFLAGS) $(CFLAGS) $< $(NFLAGS) $(DIR_OBJS)$@ $(addprefix $(IFLAGS), $(DIRS_INCLUDE))
 
-$(OBJECTS_DIRECTORY)%.o : $(SOURCES_DIRECTORY)%.c $(HEADERS)
-	@$(CC) $(FLAGS) -c $(INCLUDES) $< -o $@
-	@echo "$(GREEN).$(RESET)\c"
+$(DIR_OBJS):
+	$(CREATE_DIR) $@
 
 $(LIBFT):
-	@echo "$(NAME): $(GREEN)Creating $(LIBFT)...$(RESET)"
-	@$(MAKE) -sC $(LIBFT_DIRECTORY)
+	$(MAKE_LIBFT)
 
-$(MINILIBX):
-	@echo "$(NAME): $(GREEN)Creating $(MINILIBX)...$(RESET)"
-	@sudo $(MAKE) -sC $(MINILIBX_DIRECTORY)
+$(MLX):
+	$(MAKE_MLX)
 
 clean:
-	@$(MAKE) -sC $(LIBFT_DIRECTORY) clean
-	@$(MAKE) -sC $(MINILIBX_DIRECTORY) clean
-	@rm -rf $(OBJECTS_DIRECTORY)
-	@echo "$(NAME): $(RED)$(OBJECTS_DIRECTORY) was deleted$(RESET)"
-	@echo "$(NAME): $(RED)object files were deleted$(RESET)"
+	$(REMOVE) $(addprefix $(DIR_OBJS), $(OBJS))
+	$(REMOVE) $(DIR_OBJS)
+	$(MAKE_LIBFT) clean
+	$(MAKE_MLX) clean
 
 fclean: clean
-	@rm -f $(MINILIBX)
-	@echo "$(NAME): $(RED)$(MINILIBX) was deleted$(RESET)"
-	@rm -f $(LIBFT)
-	@echo "$(NAME): $(RED)$(LIBFT) was deleted$(RESET)"
-	@rm -f $(NAME)
-	@echo "$(NAME): $(RED)$(NAME) was deleted$(RESET)"
+	$(REMOVE) $(NAME)
+	$(MAKE_LIBFT) fclean
+	$(MAKE_MLX) fclean
 
-re:
-	@$(MAKE) fclean
-	@$(MAKE) al
+re: all fclean
+
+.PHONY: clean fclean  re
+.SILENT: all $(NAME) $(OBJS) $(DIR_OBJS) $(LIBFT) $(MLX) clean fclean re

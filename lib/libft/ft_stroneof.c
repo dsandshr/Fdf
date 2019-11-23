@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   affairs.c                                          :+:      :+:    :+:   */
+/*   ft_stroneof.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/22 20:24:23 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/11/23 21:23:50 by dsandshr         ###   ########.fr       */
+/*   Created: 2019/09/27 17:38:10 by ksharlen          #+#    #+#             */
+/*   Updated: 2019/10/12 16:23:36 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-void	fdf_affairs(s_fdf *fdf, s_mlx *mlx, s_map *map)
+char	*ft_stroneof(const char *str, const char *find)
 {
-	fdf = NULL;
-	map = NULL;
-	if (!(mlx->mlxPtr = mlx_init()))
-		exit (-1);
-	if (!(mlx->winPtr = mlx_new_window(mlx->mlxPtr, WIN_X, WIN_Y,\
-		"Dsandshr's & Dmandalo's filler")))
-		exit (-1);
-	mlx_loop(mlx->mlxPtr);
+	const char *p_find;
+
+	if (str && find && *find && *str)
+	{
+		p_find = find;
+		while (*str)
+		{
+			if ((p_find = ft_strchr(find, *str)))
+				return ((char *)str);
+			++str;
+		}
+	}
+	return (NULL);
 }

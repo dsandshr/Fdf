@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   affairs.c                                          :+:      :+:    :+:   */
+/*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/22 20:24:23 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/11/23 21:23:50 by dsandshr         ###   ########.fr       */
+/*   Created: 2019/04/16 07:10:40 by ksharlen          #+#    #+#             */
+/*   Updated: 2019/10/12 16:24:21 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-void	fdf_affairs(s_fdf *fdf, s_mlx *mlx, s_map *map)
+char	*ft_strmap(char const *s, char (*f)(char))
 {
-	fdf = NULL;
-	map = NULL;
-	if (!(mlx->mlxPtr = mlx_init()))
-		exit (-1);
-	if (!(mlx->winPtr = mlx_new_window(mlx->mlxPtr, WIN_X, WIN_Y,\
-		"Dsandshr's & Dmandalo's filler")))
-		exit (-1);
-	mlx_loop(mlx->mlxPtr);
+	char	*new_str;
+	size_t	len;
+	size_t	i;
+
+	new_str = NULL;
+	if (s)
+	{
+		i = 0;
+		len = ft_strlen(s);
+		new_str = (char *)malloc((len + 1) * sizeof(char));
+		if (new_str == NULL)
+			return (NULL);
+		ft_bzero(new_str, len + 1);
+		while (s[i] != '\0')
+		{
+			new_str[i] = (*f)(s[i]);
+			i++;
+		}
+	}
+	return (new_str);
 }

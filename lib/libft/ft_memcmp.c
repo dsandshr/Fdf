@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   affairs.c                                          :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/22 20:24:23 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/11/23 21:23:50 by dsandshr         ###   ########.fr       */
+/*   Created: 2019/04/15 13:58:05 by ksharlen          #+#    #+#             */
+/*   Updated: 2019/10/12 16:32:05 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-void	fdf_affairs(s_fdf *fdf, s_mlx *mlx, s_map *map)
+int		ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	fdf = NULL;
-	map = NULL;
-	if (!(mlx->mlxPtr = mlx_init()))
-		exit (-1);
-	if (!(mlx->winPtr = mlx_new_window(mlx->mlxPtr, WIN_X, WIN_Y,\
-		"Dsandshr's & Dmandalo's filler")))
-		exit (-1);
-	mlx_loop(mlx->mlxPtr);
+	const unsigned char *num1;
+	const unsigned char *num2;
+
+	num1 = s1;
+	num2 = s2;
+	while (n--)
+	{
+		if (*num1 != *num2)
+			return (*num1 - *num2);
+		num1++;
+		num2++;
+	}
+	return (0);
 }

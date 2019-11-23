@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   affairs.c                                          :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/22 20:24:23 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/11/23 21:23:50 by dsandshr         ###   ########.fr       */
+/*   Created: 2019/04/06 14:30:30 by ksharlen          #+#    #+#             */
+/*   Updated: 2019/10/12 16:31:10 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-void	fdf_affairs(s_fdf *fdf, s_mlx *mlx, s_map *map)
+void	*ft_memset(void *buf, int value, size_t num)
 {
-	fdf = NULL;
-	map = NULL;
-	if (!(mlx->mlxPtr = mlx_init()))
-		exit (-1);
-	if (!(mlx->winPtr = mlx_new_window(mlx->mlxPtr, WIN_X, WIN_Y,\
-		"Dsandshr's & Dmandalo's filler")))
-		exit (-1);
-	mlx_loop(mlx->mlxPtr);
+	size_t	t_byte_shift;
+
+	t_byte_shift = 0;
+	while (t_byte_shift < num)
+		*((unsigned char *)buf + t_byte_shift++) = (int)value;
+	return (buf);
 }

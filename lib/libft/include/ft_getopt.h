@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   affairs.c                                          :+:      :+:    :+:   */
+/*   ft_getopt.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/22 20:24:23 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/11/23 21:23:50 by dsandshr         ###   ########.fr       */
+/*   Created: 2019/07/27 18:12:23 by ksharlen          #+#    #+#             */
+/*   Updated: 2019/10/12 16:22:47 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#ifndef FT_GETOPT_H
+# define FT_GETOPT_H
 
-void	fdf_affairs(s_fdf *fdf, s_mlx *mlx, s_map *map)
+# include "libft.h"
+
+typedef struct	s_opt
 {
-	fdf = NULL;
-	map = NULL;
-	if (!(mlx->mlxPtr = mlx_init()))
-		exit (-1);
-	if (!(mlx->winPtr = mlx_new_window(mlx->mlxPtr, WIN_X, WIN_Y,\
-		"Dsandshr's & Dmandalo's filler")))
-		exit (-1);
-	mlx_loop(mlx->mlxPtr);
-}
+	int			index;
+	size_t		jindex;
+	char		opt;
+}				t_opt;
+
+int				ft_getopt_internal(int argc,
+	char *const argv[], const char *stringopt);
+int				ft_getopt(int argc, char *const argv[], const char *stringopt);
+
+#endif
