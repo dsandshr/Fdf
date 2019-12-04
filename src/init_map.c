@@ -6,7 +6,7 @@
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 00:25:02 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/11/22 20:20:00 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/12/04 22:31:06 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ s_fdf *init_map(char **argv, s_fdf *fdf, s_map *map)
 	s_fdf *fdf_ptr;
 	
 	fdf_ptr = fdf;
-	fd = open(argv[1], O_RDONLY);
+	if ((fd = open(argv[1], O_RDONLY)) == -1)
+		error(BAD_MAP);
 	while (get_next_line(fd, &line) == 1)
 	{
 		buf = ft_strsplit (line, ' ');

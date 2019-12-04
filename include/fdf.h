@@ -6,7 +6,7 @@
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 22:57:24 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/11/23 23:49:49 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/12/04 22:30:14 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 # define WIN_X 800
 # define WIN_NAME "Dsandshr's & Dmandalo's filler"
 # define BAD_MAP 50
-
 typedef struct	l_mlx
 {
 	void		*mlxPtr;
