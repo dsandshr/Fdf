@@ -6,7 +6,7 @@
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 20:24:23 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/11/23 23:54:44 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/11/24 00:50:44 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ static s_mlx	*mlx_things_init(s_mlx *mlx)
 	if (!(mlx->imgData = mlx_get_data_addr(mlx->imgPtr, &mlx->bpp,\
 		&mlx->size_l, &mlx->endian)))
 		exit (-1);
-	mlx->bpp /= 8;
-	ft_bzero(mlx->imgData, WIN_Y * WIN_X * mlx->bpp);
 	return (mlx);
 	
 }

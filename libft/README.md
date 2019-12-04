@@ -1,2 +1,0 @@
-# libft
-school21
