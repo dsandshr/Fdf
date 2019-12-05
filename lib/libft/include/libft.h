@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 12:17:44 by ksharlen          #+#    #+#             */
-/*   Updated: 2019/11/16 03:08:26 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/12/05 17:38:09 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,5 +197,6 @@ int				ft_qlines(char const *s, char c);
 int				ft_skipchar(const char *str, char c);
 int				ft_skipspace(const char *str);
 int				ft_thisnum(const char *line);
+int				ft_wdcounter(char const *str, char c);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:11:06 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/04 22:32:19 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/12/05 17:47:59 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ static s_map	*str_map_init(s_map *map)
 	map->map = NULL;
 	map->x = 0;
 	map->y = 0;
+	map->zoom = 20;
+	map->color = 0;
+	map->shift_x = 0;
+	map->shift_y = 0;
+	map->angle = 0;
 	return (map);
 }
 
@@ -46,6 +51,7 @@ static s_mlx	*mlx_sinit(s_mlx *mlx)
 	mlx->bpp = 0;
 	mlx->endian = 0;
 	mlx->size_l = 0;
+	mlx->map = NULL;
 	return(mlx);
 }
 
@@ -72,9 +78,9 @@ int main(int argc, char **argv)
 	if (argc != 2 || check_map(argv[1]))
 		error(argc);
 	fdf = fdf_init(fdf);
-	mlx = mlx_sinit(mlx);
 	map = str_map_init(map);
+	mlx = mlx_sinit(mlx);
 	fdf = init_map(argv, fdf, map);
-	fdf_affairs(fdf, mlx, map);
+	fdf_affairs(mlx, map);
 	return (0);
 }
