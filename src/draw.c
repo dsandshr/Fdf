@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 17:11:30 by dmandalo          #+#    #+#             */
-/*   Updated: 2019/12/05 17:54:19 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/06 20:50:52 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,24 @@ void	bresenham(float x, float y, float x1, float y1, s_mlx *data) //[1:1] [3:12]
 	int	max;
 	int z;
 	int z1;
-	
-	z = data->map->map[(int)y][(int)x]; //матрица z (округляем до int)
-	z1 = data->map->map[(int)y1][(int)x1];
 
-	x *= data->map->zoom; //zoom
-	y *= data->map->zoom;
-	x1 *= data->map->zoom;
-	y1 *= data->map->zoom;
+	z = data->map[(int)y][(int)x]; //матрица z (округляем до int)
+	z1 = data->map[(int)y1][(int)x1];
 
-	data->map->color = (z || z1) ? 0x00FF00 : 0xD0D0D0;//цвет зависит от z координаты
+	x *= data->zoom; //zoom
+	y *= data->zoom;
+	x1 *= data->zoom;
+	y1 *= data->zoom;
+
+	data->color = (z || z1) ? 0x00FF00 : 0xD0D0D0;//цвет зависит от z координаты
 
 	isometric(&x, &y, z); //3D
 	isometric(&x1, &y1, z1);
 
-	x += data->map->shift_x;//сдвиг
-	y += data->map->shift_y;
-	x1 += data->map->shift_x;
-	y1 += data->map->shift_y;
+	x += data->shift_x;//сдвиг
+	y += data->shift_y;
+	x1 += data->shift_x;
+	y1 += data->shift_y;
 
 	x_step = x1 - x; //3 - 1 = 2
 	y_step = y1 - y; //12 -1 = 11
@@ -57,7 +57,7 @@ void	bresenham(float x, float y, float x1, float y1, s_mlx *data) //[1:1] [3:12]
 	y_step /= max;
 	while ((int)(x - x1) || (int)(y - y1)) //округл. до int чтобы разница доходила точно до 0
 	{
-		mlx_pixel_put(data->mlxPtr, data->winPtr, x, y, data->map->color);
+		mlx_pixel_put(data->mlxPtr, data->winPtr, x, y, data->color);
 		x += x_step; //увеличивать каждый ход x и y
 		y += y_step;
 	}
@@ -67,16 +67,17 @@ void	draw(s_mlx *data) //функция которая будет адрессо
 {
 	int x;
 	int y;
-	
+
 	y = 0;
-	while (y < data->map->y)
+	ft_printf("%i\n", data->y);
+	while (y < data->y - 1)
 	{
 		x = 0;
-		while (x < data->map->x)
+		while (data->map[y][x] != -1)
 		{
-			if (x < data->map->x - 1) //-1 чтобы не вылазить за пределы карты
+			if (x < data->x - 1) //-1 чтобы не вылазить за пределы карты
 			bresenham(x, y, x + 1, y, data); //рис.горизонтально
-			if (y < data->map->y - 1)
+			if (y < data->y)
 			bresenham(x, y, x, y + 1, data); //рис.вертикально
 			x++;
 		}

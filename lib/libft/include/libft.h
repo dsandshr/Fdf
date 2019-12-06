@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 12:17:44 by ksharlen          #+#    #+#             */
-/*   Updated: 2019/12/05 17:38:09 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/06 20:20:52 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <sys/types.h>
+# include <sys/uio.h>
 # include <assert.h>
 # include <errno.h>
 # include "ft_printf.h"
@@ -26,7 +27,7 @@
 
 # define MAXLONG 			9223372036854775807
 # define FD_MAX				7198
-# define BUFF_SIZE			100
+# define BUFF_SIZE			1024
 
 /*
 **OTHER
@@ -67,6 +68,13 @@ typedef struct		s_lst
 	char			*str_line;
 	struct s_lst	*next;
 }					t_lst;
+
+typedef struct	s_file
+{
+	char			*tail;
+	int				file;
+	struct s_file	*next;
+}				t_file;
 
 enum			e_rw
 {

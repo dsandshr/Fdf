@@ -6,13 +6,13 @@
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 00:25:02 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/04 22:31:06 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/12/06 20:39:44 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static s_map *create_map(s_fdf *fdf, s_map *map)
+static s_mlx *create_map(s_fdf *fdf, s_mlx *map)
 {
 	if (!(map->map = (int **)malloc(sizeof(int *) * (fdf->y + 1))))
 		exit (-1);
@@ -28,10 +28,10 @@ static s_map *create_map(s_fdf *fdf, s_map *map)
 	return (map);
 }
 
-static s_fdf *write_map(s_fdf *fdf, s_map *map)
+static s_fdf *write_map(s_fdf *fdf, s_mlx *map)
 {
 	s_fdf *fdf_ptr;
-	
+
 	fdf_ptr = fdf;
 	while (fdf->next != NULL)
 		fdf = fdf->next;
@@ -65,13 +65,13 @@ static s_fdf *next_step(s_fdf *fdf)
 	return (fdf);
 }
 
-s_fdf *init_map(char **argv, s_fdf *fdf, s_map *map)
+s_fdf *init_map(char **argv, s_fdf *fdf, s_mlx *map)
 {
 	int fd;
 	char *line;
 	char **buf;
 	s_fdf *fdf_ptr;
-	
+
 	fdf_ptr = fdf;
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
 		error(BAD_MAP);
@@ -83,7 +83,7 @@ s_fdf *init_map(char **argv, s_fdf *fdf, s_map *map)
 		{
 			fdf->z = ft_atoi(buf[fdf->x]);
 			fdf = next_step(fdf);
-			fdf->x++;	
+			fdf->x++;
 		}
 		fdf->y++;
 		ft_strdel_split(buf);
@@ -93,4 +93,3 @@ s_fdf *init_map(char **argv, s_fdf *fdf, s_map *map)
 	close(fd);
 	return (write_map(fdf_ptr, map));
 }
-	
