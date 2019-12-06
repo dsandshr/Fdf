@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 22:57:24 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/06 20:40:46 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/12/06 21:31:39 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,9 @@
 /*
 ** other defines
 */
-
-# define WIN_Y 600
-# define WIN_X 800
-# define WIN_NAME "Dsandshr's & Dmandalo's filler"
+# define WIN_Y 1080
+# define WIN_X 1919
+# define WIN_NAME "Dsandshr's & Dmandalo's Fdf"
 # define BAD_MAP 50
 # define MAX(a, b) (a > b ? a : b) //тернарный оператор, находим макс.
 # define MOD(a) ((a < 0) ? -a : a)

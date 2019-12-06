@@ -6,7 +6,7 @@
 /*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 17:11:30 by dmandalo          #+#    #+#             */
-/*   Updated: 2019/12/06 21:16:45 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/06 21:31:53 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	draw(s_mlx *data) //функция которая будет адрессо
 	while (data->map[y] != NULL)
 	{
 		x = 0;
-		while (data->map[y][x] != -1)
+		while (x < data->x)
 		{
 			if (x < data->x - 1) //-1 чтобы не вылазить за пределы карты
 			bresenham(x, y, x + 1, y, data); //рис.горизонтально
