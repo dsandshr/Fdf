@@ -6,7 +6,7 @@
 /*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 17:11:30 by dmandalo          #+#    #+#             */
-/*   Updated: 2019/12/07 15:57:10 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/07 22:04:15 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ void	bresenham(float x, float y, float x1, float y1, s_mlx *data) //[1:1] [3:12]
 	y *= data->zoom;
 	x1 *= data->zoom;
 	y1 *= data->zoom;
-	z *= data->zoom / 4;
-	z1 *= data->zoom / 4;
+	z *= data->zoom / 2;
+	z1 *= data->zoom / 2;
 
-	data->color = (z || z1) ? 0x00FF00 : 0xD0D0D0;//цвет зависит от z координаты
+	data->color = (z || z1) ? data->color1 : data->color2;
 
 	if (data->izo == 1)
 	{
@@ -82,4 +82,12 @@ void	draw(s_mlx *data) //функция которая будет адрессо
 		}
 		y++;
 	}
+	//mlx_put_image_to_window(data->mlxPtr, data->winPtr, data->img, 0, 0);
+	//menu(data);
 }
+
+//void	twist(float *x, float *y, s_mlx *data, double angle)
+//{
+	//*x = data->angle;
+	//*y = data->angle;
+//}
