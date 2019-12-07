@@ -6,16 +6,11 @@
 /*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 17:11:30 by dmandalo          #+#    #+#             */
-/*   Updated: 2019/12/06 21:31:53 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/07 15:57:10 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-float	mod(float i)
-{
-	return (i < 0) ? -i : i;
-}
 
 void	isometric(float *x, float *y, int z)//заменить цифры и вернуть значения;принимать по памяти и заменить эти значения
 {
@@ -38,12 +33,16 @@ void	bresenham(float x, float y, float x1, float y1, s_mlx *data) //[1:1] [3:12]
 	y *= data->zoom;
 	x1 *= data->zoom;
 	y1 *= data->zoom;
+	z *= data->zoom / 4;
+	z1 *= data->zoom / 4;
 
 	data->color = (z || z1) ? 0x00FF00 : 0xD0D0D0;//цвет зависит от z координаты
 
-	isometric(&x, &y, z); //3D
-	isometric(&x1, &y1, z1);
-
+	if (data->izo == 1)
+	{
+		isometric(&x, &y, z); //3D
+		isometric(&x1, &y1, z1);
+	}
 	x += data->shift_x;//сдвиг
 	y += data->shift_y;
 	x1 += data->shift_x;

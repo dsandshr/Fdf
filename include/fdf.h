@@ -6,7 +6,7 @@
 /*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 22:57:24 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/06 21:31:39 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/07 15:37:01 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 ** other defines
 */
 # define WIN_Y 1080
-# define WIN_X 1919
+# define WIN_X 1920
 # define WIN_NAME "Dsandshr's & Dmandalo's Fdf"
 # define BAD_MAP 50
 # define MAX(a, b) (a > b ? a : b) //тернарный оператор, находим макс.
@@ -49,6 +49,7 @@ typedef struct	l_mlx
 	int			shift_x;
 	int			shift_y;
 	double		angle;
+	int			izo;
 }				s_mlx;
 
 typedef struct	l_fdf

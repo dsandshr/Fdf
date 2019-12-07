@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:11:06 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/06 20:42:01 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/12/07 15:37:37 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ s_mlx	*init_mlx(s_fdf *fdf, char **str, s_mlx *mlx)
 	mlx->color = 0;
 	mlx->shift_x = 0;
 	mlx->shift_y = 0;
-	mlx->angle = 0;
+	mlx->angle = 0.523599;
+	mlx->izo = 0;
 	fdf = init_map(str, fdf, mlx);
 	return (mlx);
 }
