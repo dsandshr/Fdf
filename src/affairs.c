@@ -6,11 +6,38 @@
 /*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 20:24:23 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/07 21:55:01 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/10 18:30:55 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+// static void mlx_free(s_mlx *mlx)
+// {
+// 	free(mlx->mlxPtr);
+// 	free(mlx->winPtr);
+// 	free(mlx->imgPtr);
+// 	free(mlx->size_l);
+// 	free(mlx->endian);
+// 	free(mlx->imgData);
+// 	free(mlx->bpp);
+// 	while (mlx->y != 0)
+// 	{
+// 		free(mlx->map[mlx->y]);
+// 		--mlx->y;
+// 	}
+// 	free(mlx->map);
+// 	free(mlx->x);
+// 	free(mlx->y);
+// 	free(mlx->zoom);
+// 	free(mlx->color);
+// 	free(mlx->shift_x);
+// 	free(mlx->shift_y);
+// 	free((int)mlx->angle);
+// 	free(mlx->izo);
+// 	free(mlx->color1);
+// 	free(mlx->color2);
+// }
 
 static void minus_z(s_mlx *data, int x, int y)
 {
@@ -19,8 +46,19 @@ static void minus_z(s_mlx *data, int x, int y)
 		x = 0;
 		while (x < data->x)
 		{
-			if (data->map[y][x] < 0 || data->map[y][x] > 0)
-				data->map[y][x] -= 1;
+			if (data->map[y][x] < 0)
+			{	if (data->map[y][x] % 2 == 5)
+					data->map[y][x] = MIN_Z(data->map[y][x]) - 1;
+				else
+					data->map[y][x] = MIN_Z(data->map[y][x]);
+			}
+			if (data->map[y][x] > 0)
+			{
+				if (data->map[y][x] % 2 == 5)
+					data->map[y][x] = PL_Z(data->map[y][x]) + 1;
+				else
+					data->map[y][x] = PL_Z(data->map[y][x]);
+			}
 			x++;
 		}
 		y++;
@@ -34,20 +72,18 @@ static void plus_z(s_mlx *data, int x, int y)
 		x = 0;
 		while (x < data->x)
 		{
-			//ft_printf("%i\n", data->x);
-			if (data->map[y][x] < 0 || data->map[y][x] > 0)
-				data->map[y][x] += 1;
+			if (data->map[y][x] < 0)
+				data->map[y][x] *= 2;
+			if (data->map[y][x] > 0)
+				data->map[y][x] *= 2;
 			x++;
-			ft_printf("%i ", data->map[y][x]);
 		}
-		ft_printf("\n");
 		y++;
 	}
 }
 
 int				deal_key(int key, s_mlx *data)
 {
-	printf("d\n, key");
 	if (key == KEY_P)
 		plus_z(data, 0, 0);
 	if (key == KEY_M)
@@ -68,7 +104,10 @@ int				deal_key(int key, s_mlx *data)
 	if (key == KEY_NUM_SUB)
 		data->zoom -= 1;
 	if (key == KEY_ESC)
+	{
+		//mlx_free(data);
 		exit(-1);
+	}
 	if (key == KEY_UP_ARROW)
 		data->shift_y -= 40;
 	if (key == KEY_DOWN_ARROW)
@@ -94,6 +133,7 @@ static s_mlx	*mlx_things_init(s_mlx *mlx)
 		&mlx->size_l, &mlx->endian)))
 		exit(-1);
 	mlx->bpp /= 8;
+	mlx_clear_window(mlx->mlxPtr, mlx->winPtr);
 	ft_bzero(mlx->imgData, WIN_X * WIN_Y * mlx->bpp);
 	return (mlx);
 }

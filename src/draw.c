@@ -6,7 +6,7 @@
 /*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 17:11:30 by dmandalo          #+#    #+#             */
-/*   Updated: 2019/12/07 22:04:15 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/10 18:08:04 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ void	draw(s_mlx *data) //функция которая будет адрессо
 	int x;
 	int y;
 
+	
 	y = 0;
-	ft_printf("%i\n", data->y);
 	while (data->map[y] != NULL)
 	{
 		x = 0;
@@ -82,8 +82,7 @@ void	draw(s_mlx *data) //функция которая будет адрессо
 		}
 		y++;
 	}
-	//mlx_put_image_to_window(data->mlxPtr, data->winPtr, data->img, 0, 0);
-	//menu(data);
+	print_menu(data);
 }
 
 //void	twist(float *x, float *y, s_mlx *data, double angle)

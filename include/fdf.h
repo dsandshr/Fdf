@@ -6,7 +6,7 @@
 /*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 22:57:24 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/07 20:50:12 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/10 18:20:49 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 /*
 ** other defines
 */
+# define MIN_Z(x) ((x == -1) ? -1 : (x / 2))
+# define PL_Z(x) ((x == 1) ? 1 : (x / 2))
 # define WIN_Y 1080
 # define WIN_X 1920
 # define WIN_NAME "Dsandshr's & Dmandalo's Fdf"
@@ -72,6 +74,6 @@ void	error(int argc);
 s_fdf 	*init_map(char **argv, s_fdf *fdf, s_mlx *map);
 void	fdf_affairs(s_mlx *mlx);
 void	draw(s_mlx *data);
-void	menu(s_mlx *data);
+void	print_menu(s_mlx *data);
 
 #endif

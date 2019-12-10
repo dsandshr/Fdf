@@ -6,7 +6,7 @@
 #    By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/23 22:09:17 by dsandshr          #+#    #+#              #
-#    Updated: 2019/12/05 17:28:58 by dmandalo         ###   ########.fr        #
+#    Updated: 2019/12/10 17:10:25 by dmandalo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ SRCS				:= main.c\
 						init_map.c\
 						error.c\
 						affairs.c\
-						draw.c
+						draw.c \
+						menu.c
 						
 
 OBJS				:= $(SRCS:.c=.o)
