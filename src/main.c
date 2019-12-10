@@ -6,7 +6,7 @@
 /*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:11:06 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/07 22:06:40 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/10 20:04:04 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ s_mlx	*init_mlx(s_fdf *fdf, char **str, s_mlx *mlx)
 	mlx->shift_y = 400;
 	mlx->angle = 0.523599;
 	mlx->izo = 0;
-	mlx->color1 = 0xadd8e6;
-	mlx->color2 = 0xffffff;
+	mlx->color1 = 0x43cd3747;
+	mlx->color2 = 0x3b72f5f6;
 	fdf = init_map(str, fdf, mlx);
 	return (mlx);
 }

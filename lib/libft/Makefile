@@ -6,7 +6,7 @@
 #    By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/06 14:32:05 by ksharlen          #+#    #+#              #
-#    Updated: 2019/12/05 17:37:42 by dmandalo         ###   ########.fr        #
+#    Updated: 2019/12/10 19:57:36 by dmandalo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -137,7 +137,12 @@ SRC_LIBFT 		:= ft_arrfind.c\
 						ft_skipspace.c\
 						ft_skipchar.c\
 						ft_qlines.c\
-						ft_wdcounter.c
+						ft_wdcounter.c\
+						ft_itoa_base.c\
+						ft_stradd.c\
+						ft_strrev.c\
+						ft_nbrlen.c\
+						ft_power_long.c
 
 SRCS 			:= $(SRC_LIBFT) $(SRCS_FT_PRINTF)
 

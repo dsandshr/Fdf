@@ -6,7 +6,7 @@
 /*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 20:24:23 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/10 18:30:55 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/10 20:00:02 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,9 @@ int				deal_key(int key, s_mlx *data)
 		plus_z(data, 0, 0);
 	if (key == KEY_M)
 		minus_z(data, 0, 0);
-	if (key == KEY_1)
-		data->color1 = rand();
 	if (key == KEY_2)
+		data->color1 = rand();
+	if (key == KEY_1)
 		data->color2 = rand();
 	if (key == KEY_3)
 	{

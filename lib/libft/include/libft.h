@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 12:17:44 by ksharlen          #+#    #+#             */
-/*   Updated: 2019/12/06 20:20:52 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/12/10 19:57:07 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,5 +206,10 @@ int				ft_skipchar(const char *str, char c);
 int				ft_skipspace(const char *str);
 int				ft_thisnum(const char *line);
 int				ft_wdcounter(char const *str, char c);
+char			*ft_itoa_base(int n, int base, int uppercase);
+char			*ft_stradd(char *str, char ch);
+long			ft_nbrlen(long nb, long base);
+char			*ft_strrev(char *str);
+long			ft_power_long(long nb, long pow);
 
 #endif
