@@ -6,7 +6,7 @@
 /*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:11:06 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/10 20:04:04 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/11 16:37:10 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ s_mlx	*init_mlx(s_fdf *fdf, char **str, s_mlx *mlx)
 	mlx->imgPtr = NULL;
 	mlx->size_l = 0;
 	mlx->endian = 0;
-	mlx->imgData = NULL;
+	mlx->imgData = 0;
 	mlx->bpp = 0;
 	mlx->map = NULL;
 	mlx->x = 0;

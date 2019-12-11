@@ -6,7 +6,7 @@
 /*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 22:57:24 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/10 18:20:49 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/11 17:14:19 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct	l_mlx
 	void		*winPtr;
 	void		*imgPtr;
 	void		*img;
-	char		*imgData;
+	int			*imgData;
 	int			bpp;
 	int			size_l;
 	int			endian;

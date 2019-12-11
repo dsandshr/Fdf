@@ -6,7 +6,7 @@
 /*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 20:24:23 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/10 20:00:02 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/11 18:05:54 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ int				deal_key(int key, s_mlx *data)
 		data->shift_x -= 40;
 	if (key == KEY_RIGHT_ARROW)
 		data->shift_x += 40;
-	mlx_clear_window(data->mlxPtr, data->winPtr);
 	draw(data);
 	return (0);
 }
@@ -129,11 +128,10 @@ static s_mlx	*mlx_things_init(s_mlx *mlx)
 		exit(-1);
 	if (!(mlx->imgPtr = mlx_new_image(mlx->mlxPtr, WIN_X, WIN_Y)))
 		exit(-1);
-	if (!(mlx->imgData = mlx_get_data_addr(mlx->imgPtr, &mlx->bpp,\
+	if (!(mlx->imgData = (int*)mlx_get_data_addr(mlx->imgPtr, &mlx->bpp,\
 		&mlx->size_l, &mlx->endian)))
 		exit(-1);
 	mlx->bpp /= 8;
-	mlx_clear_window(mlx->mlxPtr, mlx->winPtr);
 	ft_bzero(mlx->imgData, WIN_X * WIN_Y * mlx->bpp);
 	return (mlx);
 }

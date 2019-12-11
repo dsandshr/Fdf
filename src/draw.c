@@ -6,7 +6,7 @@
 /*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 17:11:30 by dmandalo          #+#    #+#             */
-/*   Updated: 2019/12/10 18:08:04 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/11 19:19:52 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	isometric(float *x, float *y, int z)//заменить цифры и вер
 	*y = (*x + *y) * sin(0.8) - z;
 }
 
-void	bresenham(float x, float y, float x1, float y1, s_mlx *data) //[1:1] [3:12]
+void	bresenham(float x, float y,float x1, float y1, s_mlx *data) //[1:1] [3:12]
 {
 	float x_step;
 	float y_step;
@@ -28,7 +28,7 @@ void	bresenham(float x, float y, float x1, float y1, s_mlx *data) //[1:1] [3:12]
 
 	z = data->map[(int)y][(int)x]; //матрица z (округляем до int)
 	z1 = data->map[(int)y1][(int)x1];
-
+	
 	x *= data->zoom; //zoom
 	y *= data->zoom;
 	x1 *= data->zoom;
@@ -56,8 +56,9 @@ void	bresenham(float x, float y, float x1, float y1, s_mlx *data) //[1:1] [3:12]
 	y_step /= max;
 	while ((int)(x - x1) || (int)(y - y1)) //округл. до int чтобы разница доходила точно до 0
 	{
-		mlx_pixel_put(data->mlxPtr, data->winPtr, x, y, data->color);
-		x += x_step; //увеличивать каждый ход x и y
+		data->imgData[((int)y * WIN_X) + (int)x] = data->color;
+		//mlx_pixel_put(data->mlxPtr, data->winPtr, x, y, data->color);
+		x += x_step;
 		y += y_step;
 	}
 }
@@ -67,7 +68,8 @@ void	draw(s_mlx *data) //функция которая будет адрессо
 	int x;
 	int y;
 
-	
+	mlx_clear_window(data->mlxPtr, data->winPtr);
+	ft_bzero(data->imgData, WIN_X * WIN_Y * data->bpp);
 	y = 0;
 	while (data->map[y] != NULL)
 	{
@@ -82,11 +84,6 @@ void	draw(s_mlx *data) //функция которая будет адрессо
 		}
 		y++;
 	}
+	mlx_put_image_to_window(data->mlxPtr, data->winPtr, data->imgPtr, 0, 0);
 	print_menu(data);
 }
-
-//void	twist(float *x, float *y, s_mlx *data, double angle)
-//{
-	//*x = data->angle;
-	//*y = data->angle;
-//}
