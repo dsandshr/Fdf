@@ -3,41 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   affairs.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 20:24:23 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/11 18:05:54 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/12 19:15:59 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-// static void mlx_free(s_mlx *mlx)
-// {
-// 	free(mlx->mlxPtr);
-// 	free(mlx->winPtr);
-// 	free(mlx->imgPtr);
-// 	free(mlx->size_l);
-// 	free(mlx->endian);
-// 	free(mlx->imgData);
-// 	free(mlx->bpp);
-// 	while (mlx->y != 0)
-// 	{
-// 		free(mlx->map[mlx->y]);
-// 		--mlx->y;
-// 	}
-// 	free(mlx->map);
-// 	free(mlx->x);
-// 	free(mlx->y);
-// 	free(mlx->zoom);
-// 	free(mlx->color);
-// 	free(mlx->shift_x);
-// 	free(mlx->shift_y);
-// 	free((int)mlx->angle);
-// 	free(mlx->izo);
-// 	free(mlx->color1);
-// 	free(mlx->color2);
-// }
+static void mlx_free(s_mlx **mlx)
+{
+	while ((*mlx)->y >= 0)
+	{
+		free((*mlx)->map[(*mlx)->y]);
+		--(*mlx)->y;
+	}
+	(*mlx)->map = NULL;
+	free(mlx);
+	mlx = NULL;
+}
 
 static void minus_z(s_mlx *data, int x, int y)
 {
@@ -105,7 +90,7 @@ int				deal_key(int key, s_mlx *data)
 		data->zoom -= 1;
 	if (key == KEY_ESC)
 	{
-		//mlx_free(data);
+		mlx_free(&data);
 		exit(-1);
 	}
 	if (key == KEY_UP_ARROW)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 17:11:30 by dmandalo          #+#    #+#             */
-/*   Updated: 2019/12/11 19:19:52 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/12 18:54:02 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	bresenham(float x, float y,float x1, float y1, s_mlx *data) //[1:1] [3:12]
 
 	z = data->map[(int)y][(int)x]; //матрица z (округляем до int)
 	z1 = data->map[(int)y1][(int)x1];
-	
+
 	x *= data->zoom; //zoom
 	y *= data->zoom;
 	x1 *= data->zoom;
@@ -56,7 +56,8 @@ void	bresenham(float x, float y,float x1, float y1, s_mlx *data) //[1:1] [3:12]
 	y_step /= max;
 	while ((int)(x - x1) || (int)(y - y1)) //округл. до int чтобы разница доходила точно до 0
 	{
-		data->imgData[((int)y * WIN_X) + (int)x] = data->color;
+		if (y > 0 && y < WIN_Y && x > 0 && x < WIN_X)
+			data->imgData[((int)y * WIN_X) + (int)x] = data->color;
 		//mlx_pixel_put(data->mlxPtr, data->winPtr, x, y, data->color);
 		x += x_step;
 		y += y_step;

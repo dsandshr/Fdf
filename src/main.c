@@ -3,14 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:11:06 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/11 16:37:10 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/12 16:28:13 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+static void fdf_del(s_fdf **fdf)
+{
+	s_fdf *tmp;
+	s_fdf *res;
+
+	if (fdf)
+	{
+		if ((*fdf))
+		{
+			res = (*fdf);
+			while (res)
+			{
+				tmp = res->next;
+				free(res);
+				res = tmp;
+			}
+			(*fdf) = NULL;
+		}
+	}
+}
 
 static s_fdf	*fdf_init(s_fdf *fdf)
 {
@@ -60,6 +81,7 @@ s_mlx	*init_mlx(s_fdf *fdf, char **str, s_mlx *mlx)
 	mlx->color1 = 0x43cd3747;
 	mlx->color2 = 0x3b72f5f6;
 	fdf = init_map(str, fdf, mlx);
+	fdf_del(&fdf);
 	return (mlx);
 }
 

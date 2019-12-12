@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 19:35:44 by dmandalo          #+#    #+#             */
-/*   Updated: 2019/12/10 19:41:01 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/12 17:31:15 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char		*ft_itoa_base(int n, int base, int uppercase)
 	if (base == 10)
 		return (ft_itoa(n));
 	length = ft_nbrlen(n, base);
-	str = (char*)malloc(sizeof(*str) * (length + 1));
+	str = (char*)malloc(sizeof(char) * (length + 1));
 	i = 0;
 	while (i < length)
 	{
