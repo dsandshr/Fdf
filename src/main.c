@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:11:06 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/12 16:28:13 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/12/14 17:23:25 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void fdf_del(s_fdf **fdf)
+static void		fdf_del(s_fdf **fdf)
 {
 	s_fdf *tmp;
 	s_fdf *res;
@@ -36,7 +36,7 @@ static void fdf_del(s_fdf **fdf)
 static s_fdf	*fdf_init(s_fdf *fdf)
 {
 	if (!(fdf = (s_fdf *)malloc(sizeof(s_fdf))))
-		exit (-1);
+		exit(-1);
 	fdf->x = 0;
 	fdf->y = 0;
 	fdf->z = 0;
@@ -57,13 +57,13 @@ static int		check_map(char *str)
 	return (1);
 }
 
-s_mlx	*init_mlx(s_fdf *fdf, char **str, s_mlx *mlx)
+s_mlx			*init_mlx(s_fdf *fdf, char **str, s_mlx *mlx)
 {
 	if (!(mlx = (s_mlx *)malloc(sizeof(s_mlx))))
-		exit (-1);
+		exit(-1);
 	fdf = fdf_init(fdf);
-	mlx->mlxPtr = NULL;
-	mlx->winPtr = NULL;
+	mlx->mlx_ptr = NULL;
+	mlx->win_ptr = NULL;
 	mlx->imgPtr = NULL;
 	mlx->size_l = 0;
 	mlx->endian = 0;
@@ -73,19 +73,19 @@ s_mlx	*init_mlx(s_fdf *fdf, char **str, s_mlx *mlx)
 	mlx->x = 0;
 	mlx->y = 0;
 	mlx->zoom = 20;
-	mlx->color = 0;
+	mlx->clr = 0;
 	mlx->shift_x = 840;
 	mlx->shift_y = 400;
 	mlx->angle = 0.523599;
-	mlx->izo = 0;
-	mlx->color1 = 0x43cd3747;
-	mlx->color2 = 0x3b72f5f6;
+	mlx->iso = 0;
+	mlx->clr1 = 0x43cd3747;
+	mlx->clr2 = 0x3b72f5f6;
 	fdf = init_map(str, fdf, mlx);
 	fdf_del(&fdf);
 	return (mlx);
 }
 
-int		main(int argc, char **argv)
+int				main(int argc, char **argv)
 {
 	s_mlx *mlx;
 	s_fdf *fdf;

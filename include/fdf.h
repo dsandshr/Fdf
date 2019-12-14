@@ -6,7 +6,7 @@
 /*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 22:57:24 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/11 17:14:19 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/14 18:35:47 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,46 +34,52 @@
 # define MAX(a, b) (a > b ? a : b)
 # define MOD(a) ((a < 0) ? -a : a)
 
-typedef struct	l_mlx
+typedef	struct		l_mlx
 {
-	void		*mlxPtr;
-	void		*winPtr;
-	void		*imgPtr;
-	void		*img;
-	int			*imgData;
-	int			bpp;
-	int			size_l;
-	int			endian;
-	int			**map;
-	int			x;
-	int			y;
-	int			zoom;
-	int			color;
-	int			color1;
-	int			color2;
-	int			shift_x;
-	int			shift_y;
-	double		angle;
-	int			izo;
-}				s_mlx;
+	void				*mlx_ptr;
+	void				*win_ptr;
+	void				*imgPtr;
+	void				*img;
+	int					*imgData;
+	int					bpp;
+	int					size_l;
+	int					endian;
+	int					**map;
+	int					x;
+	int					y;
+	int					zoom;
+	int					clr;
+	int					clr1;
+	int					clr2;
+	int					shift_x;
+	int					shift_y;
+	int					iso;
+	double				angle;
+}					s_mlx;
 
-typedef struct	l_fdf
+typedef struct		l_fdf
 {
 	int					x;
 	int					y;
 	int					z;
 	struct l_fdf		*next;
-}				s_fdf;
+}					s_fdf;
+	
+typedef struct		l_prm	 
+{
+	float x1;
+	float y1;
+}					s_prm;
 
 
 /*
 ** func
 */
 
-void	error(int argc);
-s_fdf 	*init_map(char **argv, s_fdf *fdf, s_mlx *map);
-void	fdf_affairs(s_mlx *mlx);
-void	draw(s_mlx *data);
-void	print_menu(s_mlx *data);
+void				error(int argc);
+s_fdf				*init_map(char **argv, s_fdf *fdf, s_mlx *map);
+void				fdf_affairs(s_mlx *mlx);
+void				draw(s_mlx *data);
+void				print_menu(s_mlx *data);
 
 #endif
