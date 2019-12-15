@@ -6,16 +6,16 @@
 /*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:11:06 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/14 17:23:25 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/15 19:56:37 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void		fdf_del(s_fdf **fdf)
+static void		fdf_del(t_fdf **fdf)
 {
-	s_fdf *tmp;
-	s_fdf *res;
+	t_fdf *tmp;
+	t_fdf *res;
 
 	if (fdf)
 	{
@@ -33,9 +33,9 @@ static void		fdf_del(s_fdf **fdf)
 	}
 }
 
-static s_fdf	*fdf_init(s_fdf *fdf)
+static t_fdf	*fdf_init(t_fdf *fdf)
 {
-	if (!(fdf = (s_fdf *)malloc(sizeof(s_fdf))))
+	if (!(fdf = (t_fdf *)malloc(sizeof(t_fdf))))
 		exit(-1);
 	fdf->x = 0;
 	fdf->y = 0;
@@ -57,17 +57,17 @@ static int		check_map(char *str)
 	return (1);
 }
 
-s_mlx			*init_mlx(s_fdf *fdf, char **str, s_mlx *mlx)
+t_mlx			*init_mlx(t_fdf *fdf, char **str, t_mlx *mlx)
 {
-	if (!(mlx = (s_mlx *)malloc(sizeof(s_mlx))))
+	if (!(mlx = (t_mlx *)malloc(sizeof(t_mlx))))
 		exit(-1);
 	fdf = fdf_init(fdf);
 	mlx->mlx_ptr = NULL;
 	mlx->win_ptr = NULL;
-	mlx->imgPtr = NULL;
+	mlx->img_ptr = NULL;
 	mlx->size_l = 0;
 	mlx->endian = 0;
-	mlx->imgData = 0;
+	mlx->img_data = 0;
 	mlx->bpp = 0;
 	mlx->map = NULL;
 	mlx->x = 0;
@@ -87,8 +87,8 @@ s_mlx			*init_mlx(s_fdf *fdf, char **str, s_mlx *mlx)
 
 int				main(int argc, char **argv)
 {
-	s_mlx *mlx;
-	s_fdf *fdf;
+	t_mlx *mlx;
+	t_fdf *fdf;
 
 	fdf = NULL;
 	mlx = NULL;

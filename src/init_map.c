@@ -6,13 +6,13 @@
 /*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 00:25:02 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/14 16:38:21 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/15 17:28:41 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static		s_mlx	*create_map(s_fdf *fdf, s_mlx *map)
+static		t_mlx	*create_map(t_fdf *fdf, t_mlx *map)
 {
 	if (!(map->map = (int **)malloc(sizeof(int *) * (fdf->y + 1))))
 		exit(-1);
@@ -28,9 +28,9 @@ static		s_mlx	*create_map(s_fdf *fdf, s_mlx *map)
 	return (map);
 }
 
-static		s_fdf	*write_map(s_fdf *fdf, s_mlx *map)
+static		t_fdf	*write_map(t_fdf *fdf, t_mlx *map)
 {
-	s_fdf	*fdf_ptr;
+	t_fdf	*fdf_ptr;
 
 	fdf_ptr = fdf;
 	while (fdf->next != NULL)
@@ -51,11 +51,11 @@ static		s_fdf	*write_map(s_fdf *fdf, s_mlx *map)
 	return (fdf_ptr);
 }
 
-static		s_fdf	*next_step(s_fdf *fdf)
+static		t_fdf	*next_step(t_fdf *fdf)
 {
 	while (fdf->next != NULL)
 		fdf = fdf->next;
-	if (!(fdf->next = (s_fdf *)malloc(sizeof(s_fdf))))
+	if (!(fdf->next = (t_fdf *)malloc(sizeof(t_fdf))))
 		exit(-1);
 	fdf->next->x = fdf->x;
 	fdf->next->y = fdf->y;
@@ -65,12 +65,12 @@ static		s_fdf	*next_step(s_fdf *fdf)
 	return (fdf);
 }
 
-s_fdf				*init_map(char **argv, s_fdf *fdf, s_mlx *map)
+t_fdf				*init_map(char **argv, t_fdf *fdf, t_mlx *map)
 {
 	int		fd;
 	char	*line;
 	char	**buf;
-	s_fdf	*fdf_ptr;
+	t_fdf	*fdf_ptr;
 
 	fdf_ptr = fdf;
 	if ((fd = open(argv[1], O_RDONLY)) == -1)

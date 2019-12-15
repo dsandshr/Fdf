@@ -6,13 +6,13 @@
 /*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 20:24:23 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/14 17:22:33 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/15 21:09:49 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void		mlx_free(s_mlx **mlx)
+static void		mlx_free(t_mlx **mlx)
 {
 	while ((*mlx)->y >= 0)
 	{
@@ -24,7 +24,7 @@ static void		mlx_free(s_mlx **mlx)
 	mlx = NULL;
 }
 
-static void		minus_z(s_mlx *data, int x, int y)
+static void		minus_z(t_mlx *data, int x, int y)
 {
 	while (data->map[y] != NULL)
 	{
@@ -51,7 +51,7 @@ static void		minus_z(s_mlx *data, int x, int y)
 	}
 }
 
-static void		plus_z(s_mlx *data, int x, int y)
+static void		plus_z(t_mlx *data, int x, int y)
 {
 	while (data->map[y] != NULL)
 	{
@@ -68,7 +68,7 @@ static void		plus_z(s_mlx *data, int x, int y)
 	}
 }
 
-int				deal_key(int key, s_mlx *data)
+int				keys(int key, t_mlx *data)
 {
 	if (key == KEY_P)
 		plus_z(data, 0, 0);
@@ -83,6 +83,14 @@ int				deal_key(int key, s_mlx *data)
 		data->clr1 = rand();
 		data->clr2 = rand();
 	}
+	mlx_clear_window(data->mlx_ptr, data->win_ptr);
+	ft_bzero(data->img_data, WIN_X * WIN_Y * data->bpp);
+	draw(data);
+	return (0);
+}
+
+int				deal_key(int key, t_mlx *data)
+{
 	if (key == KEY_NUM_ENTR)
 		data->iso ^= 1;
 	if (key == KEY_NUM_PLS)
@@ -102,27 +110,30 @@ int				deal_key(int key, s_mlx *data)
 		data->shift_x -= 40;
 	if (key == KEY_RIGHT_ARROW)
 		data->shift_x += 40;
+	keys(key, data);
+	mlx_clear_window(data->mlx_ptr, data->win_ptr);
+	ft_bzero(data->img_data, WIN_X * WIN_Y * data->bpp);
 	draw(data);
 	return (0);
 }
 
-static s_mlx	*mlx_things_init(s_mlx *mlx)
+static t_mlx	*mlx_things_init(t_mlx *mlx)
 {
 	if (!(mlx->mlx_ptr = mlx_init()))
 		exit(-1);
 	if (!(mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WIN_X, WIN_Y, WIN_NAME)))
 		exit(-1);
-	if (!(mlx->imgPtr = mlx_new_image(mlx->mlx_ptr, WIN_X, WIN_Y)))
+	if (!(mlx->img_ptr = mlx_new_image(mlx->mlx_ptr, WIN_X, WIN_Y)))
 		exit(-1);
-	if (!(mlx->imgData = (int*)mlx_get_data_addr(mlx->imgPtr, &mlx->bpp,\
+	if (!(mlx->img_data = (int*)mlx_get_data_addr(mlx->img_ptr, &mlx->bpp,\
 		&mlx->size_l, &mlx->endian)))
 		exit(-1);
 	mlx->bpp /= 8;
-	ft_bzero(mlx->imgData, WIN_X * WIN_Y * mlx->bpp);
+	ft_bzero(mlx->img_data, WIN_X * WIN_Y * mlx->bpp);
 	return (mlx);
 }
 
-void			fdf_affairs(s_mlx *mlx)
+void			fdf_affairs(t_mlx *mlx)
 {
 	mlx = mlx_things_init(mlx);
 	draw(mlx);
