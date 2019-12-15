@@ -6,7 +6,7 @@
 /*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 22:57:24 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/15 21:08:53 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/15 21:28:59 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,14 @@ typedef struct			s_prm
 ** func
 */
 
-void					error(int argc);
 t_fdf					*init_map(char **argv, t_fdf *fdf, t_mlx *map);
+void					error(int argc);
 void					fdf_affairs(t_mlx *mlx);
 void					draw(t_mlx *data);
 void					print_menu(t_mlx *data);
+int						deal_key(int key, t_mlx *data);
+int						keys(int key, t_mlx *data);
+int						deal_key(int key, t_mlx *data);
+void					fdf_affairs(t_mlx *mlx);
 
 #endif

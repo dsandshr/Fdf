@@ -6,7 +6,7 @@
 /*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 20:24:23 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/15 21:09:49 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/15 21:27:05 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,28 +115,4 @@ int				deal_key(int key, t_mlx *data)
 	ft_bzero(data->img_data, WIN_X * WIN_Y * data->bpp);
 	draw(data);
 	return (0);
-}
-
-static t_mlx	*mlx_things_init(t_mlx *mlx)
-{
-	if (!(mlx->mlx_ptr = mlx_init()))
-		exit(-1);
-	if (!(mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WIN_X, WIN_Y, WIN_NAME)))
-		exit(-1);
-	if (!(mlx->img_ptr = mlx_new_image(mlx->mlx_ptr, WIN_X, WIN_Y)))
-		exit(-1);
-	if (!(mlx->img_data = (int*)mlx_get_data_addr(mlx->img_ptr, &mlx->bpp,\
-		&mlx->size_l, &mlx->endian)))
-		exit(-1);
-	mlx->bpp /= 8;
-	ft_bzero(mlx->img_data, WIN_X * WIN_Y * mlx->bpp);
-	return (mlx);
-}
-
-void			fdf_affairs(t_mlx *mlx)
-{
-	mlx = mlx_things_init(mlx);
-	draw(mlx);
-	mlx_key_hook(mlx->win_ptr, deal_key, mlx);
-	mlx_loop(mlx->mlx_ptr);
 }

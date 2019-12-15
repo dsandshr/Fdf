@@ -6,7 +6,7 @@
 /*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:11:06 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/15 19:56:37 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/15 21:30:00 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int				main(int argc, char **argv)
 	if (argc != 2)
 		error(argc);
 	if (check_map(argv[1]) == 1)
-	mlx = init_mlx(fdf, argv, mlx);
+		mlx = init_mlx(fdf, argv, mlx);
 	fdf_affairs(mlx);
 	return (0);
 }

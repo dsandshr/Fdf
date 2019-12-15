@@ -6,7 +6,7 @@
 #    By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/23 22:09:17 by dsandshr          #+#    #+#              #
-#    Updated: 2019/12/15 21:11:30 by dmandalo         ###   ########.fr        #
+#    Updated: 2019/12/15 21:28:53 by dmandalo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,8 @@ SRCS				:= main.c\
 						error.c\
 						affairs.c\
 						draw.c \
-						menu.c
+						menu.c \
+						advert.c
 
 OBJS				:= $(SRCS:.c=.o)
 DIRS_INCLUDE		:= $(DIR_INCLUDE_LIBFT) $(DIR_INCLUDE_FDF) $(DIR_INCLUDE_MLX) $(DIR_INCLUDE_LINAL)
