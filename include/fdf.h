@@ -6,7 +6,7 @@
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 22:57:24 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/13 16:42:51 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/12/16 16:35:11 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,46 +34,56 @@
 # define MAX(a, b) (a > b ? a : b)
 # define MOD(a) ((a < 0) ? -a : a)
 
-typedef struct	l_mlx
+typedef	struct			s_mlx
 {
-	void		*mlxPtr;
-	void		*winPtr;
-	void		*imgPtr;
-	void		*img;
-	int			*imgData;
-	int			bpp;
-	int			size_l;
-	int			endian;
-	int			**map;
-	int			x;
-	int			y;
-	int			zoom;
-	int			color;
-	int			color1;
-	int			color2;
-	int			shift_x;
-	int			shift_y;
-	double		angle;
-	int			izo;
-}				s_mlx;
+	void				*mlx_ptr;
+	void				*win_ptr;
+	void				*img_ptr;
+	void				*img;
+	int					*img_data;
+	int					bpp;
+	int					size_l;
+	int					endian;
+	int					**map;
+	int					x;
+	int					y;
+	int					zoom;
+	int					clr;
+	int					clr1;
+	int					clr2;
+	int					shift_x;
+	int					shift_y;
+	int					iso;
+	double				angle;
+}						t_mlx;
 
-typedef struct	l_fdf
+typedef struct			s_fdf
 {
 	int					x;
 	int					y;
 	int					z;
-	struct l_fdf		*next;
-}				s_fdf;
+	struct s_fdf		*next;
+}						t_fdf;
 
+typedef struct			s_prm
+{	float x;
+	float y;
+	float x1;
+	float y1;
+}						t_prm;
 
 /*
 ** func
 */
 
-void	error(int argc);
-s_fdf 	*init_map(char **argv, s_fdf *fdf, s_mlx *map);
-void	fdf_affairs(s_mlx *mlx);
-void	draw(s_mlx *data);
-void	print_menu(s_mlx *data);
+t_fdf					*init_map(char **argv, t_fdf *fdf, t_mlx *map);
+void					error(int argc);
+void					fdf_affairs(t_mlx *mlx);
+void					draw(t_mlx *data);
+void					print_menu(t_mlx *data);
+int						deal_key(int key, t_mlx *data);
+int						keys(int key, t_mlx *data);
+int						deal_key(int key, t_mlx *data);
+void					fdf_affairs(t_mlx *mlx);
 
 #endif
