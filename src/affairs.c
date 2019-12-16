@@ -6,7 +6,7 @@
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 20:24:23 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/12 19:15:59 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/12/13 16:45:15 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,15 @@ static void minus_z(s_mlx *data, int x, int y)
 		while (x < data->x)
 		{
 			if (data->map[y][x] < 0)
-			{	if (data->map[y][x] % 2 == 5)
+			{
+				if (data->map[y][x] % 2 >= 5)
 					data->map[y][x] = MIN_Z(data->map[y][x]) - 1;
 				else
 					data->map[y][x] = MIN_Z(data->map[y][x]);
 			}
 			if (data->map[y][x] > 0)
 			{
-				if (data->map[y][x] % 2 == 5)
+				if (data->map[y][x] % 2 >= 5)
 					data->map[y][x] = PL_Z(data->map[y][x]) + 1;
 				else
 					data->map[y][x] = PL_Z(data->map[y][x]);

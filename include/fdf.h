@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 22:57:24 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/11 17:14:19 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/13 16:42:51 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 /*
 ** other defines
 */
-# define MIN_Z(x) ((x == -1) ? -1 : (x / 2))
-# define PL_Z(x) ((x == 1) ? 1 : (x / 2))
+# define MIN_Z(x) ((x == -1) ? -1 : (x * -0.9))
+# define PL_Z(x) ((x == 1) ? 1 : (x * 0.9))
 # define WIN_Y 1080
 # define WIN_X 1920
 # define WIN_NAME "Dsandshr's & Dmandalo's Fdf"
