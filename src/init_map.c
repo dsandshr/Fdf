@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 00:25:02 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/15 17:28:41 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/16 17:38:07 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ t_fdf				*init_map(char **argv, t_fdf *fdf, t_mlx *map)
 		}
 		fdf->y++;
 		ft_strdel_split(buf);
-		buf = NULL;
-		ft_strdel(&line);
+		free(buf);
+		free(line);
 	}
 	close(fd);
 	return (write_map(fdf_ptr, map));

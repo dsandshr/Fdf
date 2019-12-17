@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/22 20:24:23 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/17 16:51:33 by dmandalo         ###   ########.fr       */
+/*   Created: 2019/12/17 16:55:48 by dmandalo          #+#    #+#             */
+/*   Updated: 2019/12/17 17:19:17 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ static void		minus_z(t_mlx *data, int x, int y)
 		{
 			if (data->map[y][x] < 0)
 			{
-				if (data->map[y][x] % 2 >= 5)
+				if (data->map[y][x] % 2 == 5)
 					data->map[y][x] = MIN_Z(data->map[y][x]) - 1;
 				else
 					data->map[y][x] = MIN_Z(data->map[y][x]);
 			}
 			if (data->map[y][x] > 0)
 			{
-				if (data->map[y][x] % 2 >= 5)
+				if (data->map[y][x] % 2 == 5)
 					data->map[y][x] = PL_Z(data->map[y][x]) + 1;
 				else
 					data->map[y][x] = PL_Z(data->map[y][x]);
