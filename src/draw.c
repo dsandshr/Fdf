@@ -6,7 +6,7 @@
 /*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 17:11:30 by dmandalo          #+#    #+#             */
-/*   Updated: 2019/12/15 20:00:12 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/17 16:36:44 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void		isometric(float *x, float *y, int z)
 	*y = (*x + *y) * sin(0.8) - z;
 }
 
-void		bresengam_two(t_prm m, t_mlx *data)
+void		primary(t_prm m, t_mlx *data)
 {
 	int		max;
 	float	x_step;
@@ -42,7 +42,7 @@ void		bresengam_two(t_prm m, t_mlx *data)
 	}
 }
 
-void		bresenham(t_prm m, t_mlx *data)
+void		prime(t_prm m, t_mlx *data)
 {
 	float	x_step;
 	float	y_step;
@@ -56,15 +56,15 @@ void		bresenham(t_prm m, t_mlx *data)
 	m.y *= data->zoom;
 	m.x1 *= data->zoom;
 	m.y1 *= data->zoom;
-	z *= data->zoom / 2;
-	z1 *= data->zoom / 2;
+	z *= data->zoom / 3;
+	z1 *= data->zoom / 3;
 	data->clr = (z || z1) ? data->clr1 : data->clr2;
 	if (data->iso == 1)
 	{
 		isometric(&m.x, &m.y, z);
 		isometric(&m.x1, &m.y1, z1);
 	}
-	bresengam_two(m, data);
+	primary(m, data);
 }
 
 void		draw(t_mlx *data)
@@ -81,13 +81,13 @@ void		draw(t_mlx *data)
 			{
 				xy.y1 = xy.y;
 				xy.x1 = xy.x + 1;
-				bresenham(xy, data);
+				prime(xy, data);
 			}
 			if ((int)xy.y + 1 < data->y)
 			{
 				xy.y1 = xy.y + 1;
 				xy.x1 = xy.x;
-				bresenham(xy, data);
+				prime(xy, data);
 			}
 			xy.x++;
 		}

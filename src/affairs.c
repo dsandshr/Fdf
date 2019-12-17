@@ -6,7 +6,7 @@
 /*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 20:24:23 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/15 21:27:05 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/17 16:51:33 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ static void		mlx_free(t_mlx **mlx)
 		--(*mlx)->y;
 	}
 	(*mlx)->map = NULL;
+	mlx_destroy_image((*mlx)->mlx_ptr, (*mlx)->img_ptr);
+	mlx_destroy_window((*mlx)->mlx_ptr, (*mlx)->win_ptr);
+	free((*mlx)->mlx_ptr);
 	free(mlx);
 	mlx = NULL;
 }
@@ -33,14 +36,14 @@ static void		minus_z(t_mlx *data, int x, int y)
 		{
 			if (data->map[y][x] < 0)
 			{
-				if (data->map[y][x] % 2 == 5)
+				if (data->map[y][x] % 2 >= 5)
 					data->map[y][x] = MIN_Z(data->map[y][x]) - 1;
 				else
 					data->map[y][x] = MIN_Z(data->map[y][x]);
 			}
 			if (data->map[y][x] > 0)
 			{
-				if (data->map[y][x] % 2 == 5)
+				if (data->map[y][x] % 2 >= 5)
 					data->map[y][x] = PL_Z(data->map[y][x]) + 1;
 				else
 					data->map[y][x] = PL_Z(data->map[y][x]);

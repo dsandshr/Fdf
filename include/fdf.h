@@ -6,7 +6,7 @@
 /*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 22:57:24 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/15 21:28:59 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/17 16:50:10 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@
 /*
 ** other defines
 */
-# define MIN_Z(x) ((x == -1) ? -1 : (x / 2))
-# define PL_Z(x) ((x == 1) ? 1 : (x / 2))
-# define WIN_Y 1080
-# define WIN_X 1920
+# define MIN_Z(x) ((x == -1) ? -1 : (x / 1.2))
+# define PL_Z(x) ((x == 1) ? 1 : (x / 1.2))
+# define WIN_Y 1152
+# define WIN_X 2048
 # define WIN_NAME "Dsandshr's & Dmandalo's Fdf"
 # define BAD_MAP 50
 # define MAX(a, b) (a > b ? a : b)
@@ -83,7 +83,5 @@ void					draw(t_mlx *data);
 void					print_menu(t_mlx *data);
 int						deal_key(int key, t_mlx *data);
 int						keys(int key, t_mlx *data);
-int						deal_key(int key, t_mlx *data);
-void					fdf_affairs(t_mlx *mlx);
 
 #endif
