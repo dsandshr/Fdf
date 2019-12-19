@@ -3,19 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/05 17:11:30 by dmandalo          #+#    #+#             */
-/*   Updated: 2019/12/15 20:00:12 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/19 19:33:20 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void		isometric(float *x, float *y, int z)
+void		isometric(float *x, float *y, int z, t_mlx *data)
 {
-	*x = (*x - *y) * cos(0.8);
-	*y = (*x + *y) * sin(0.8) - z;
+	float previous_x;
+    float previous_y;
+
+    previous_x = *x;
+    previous_y = *y;
+    *x = (previous_x - previous_y) * cos(0.523599);
+    *y = -z + (previous_x + previous_y) * sin(0.523599);
+}
+
+void		rot_y(float *x, float *y, int z, t_mlx *data)
+{
+	*x = *x * cos((M_PI_4 / 2) * data->angle) + z * sin((M_PI_4 / 2) * data->angle);
+	*y = *y;
+	z = (*x * -1) * sin((M_PI_4 / 2) * data->angle) + z * cos((M_PI_4 / 2) * data->angle);
+}
+
+void		rot_x(float *x, float *y, int z, t_mlx *data)
+{
+	*x = *x;
+	*y = *y * cos((M_PI_4 / 2) * data->angle) + z * sin((M_PI_4 / 2) * data->angle);
+	z = (*y * -1) * sin((M_PI_4 / 2) * data->angle) + z * cos((M_PI_4 / 2) * data->angle);
 }
 
 void		bresengam_two(t_prm m, t_mlx *data)
@@ -47,8 +66,8 @@ void		bresenham(t_prm m, t_mlx *data)
 	float	x_step;
 	float	y_step;
 	int		max;
-	int		z;
-	int		z1;
+	float	z;
+	float	z1;
 
 	z = data->map[(int)m.y][(int)m.x];
 	z1 = data->map[(int)m.y1][(int)m.x1];
@@ -61,8 +80,18 @@ void		bresenham(t_prm m, t_mlx *data)
 	data->clr = (z || z1) ? data->clr1 : data->clr2;
 	if (data->iso == 1)
 	{
-		isometric(&m.x, &m.y, z);
-		isometric(&m.x1, &m.y1, z1);
+		isometric(&m.x, &m.y, z, data);
+		isometric(&m.x1, &m.y1, z1, data);
+	}
+	if (data->iso == 2)
+	{
+		rot_x(&m.x, &m.y, z, data);
+		rot_x(&m.x1, &m.y1, z1, data);
+	}
+	if (data->iso == 3)
+	{
+		rot_y(&m.x, &m.y, z, data);
+		rot_y(&m.x1, &m.y1, z1, data);
 	}
 	bresengam_two(m, data);
 }

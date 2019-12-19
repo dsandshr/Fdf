@@ -6,7 +6,7 @@
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 22:57:24 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/16 16:35:11 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/12/18 19:55:46 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef	struct			s_mlx
 	int					shift_y;
 	int					iso;
 	double				angle;
+	double				coss;
+	double				sins;
 }						t_mlx;
 
 typedef struct			s_fdf
@@ -85,5 +87,6 @@ int						deal_key(int key, t_mlx *data);
 int						keys(int key, t_mlx *data);
 int						deal_key(int key, t_mlx *data);
 void					fdf_affairs(t_mlx *mlx);
+int						check_in_map(char *str, int fd);
 
 #endif

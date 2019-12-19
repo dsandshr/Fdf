@@ -6,7 +6,7 @@
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:35:56 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/16 17:59:50 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/12/19 19:38:56 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,31 @@ int				keys(int key, t_mlx *data)
 	{
 		data->clr1 = rand();
 		data->clr2 = rand();
+	}
+	if (key == KEY_SPACE)
+	{
+		data->iso = 0;
+		data->angle = 0;
+	}
+	if (key == KEY_W)
+	{
+		data->iso = 2;
+		data->angle -= 0.1;
+	}
+	if (key == KEY_S)
+	{
+		data->iso = 2;
+		data->angle += 0.1;
+	}
+	if (key == KEY_A)
+	{
+		data->iso = 3;
+		data->angle -= 0.1;
+	}
+	if (key == KEY_D)
+	{
+		data->iso = 3;
+		data->angle += 0.1;
 	}
 	mlx_clear_window(data->mlx_ptr, data->win_ptr);
 	ft_bzero(data->img_data, WIN_X * WIN_Y * data->bpp);
