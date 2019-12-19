@@ -6,9 +6,10 @@
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 22:57:24 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/18 19:55:46 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/12/19 19:47:22 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef FDF_H
 # define FDF_H
@@ -25,8 +26,8 @@
 /*
 ** other defines
 */
-# define MIN_Z(x) ((x == -1) ? -1 : (x * -0.9))
-# define PL_Z(x) ((x == 1) ? 1 : (x * 0.9))
+# define MIN_Z(x) ((x == -1) ? -1 : (x / 2))
+# define PL_Z(x) ((x == 1) ? 1 : (x / 2))
 # define WIN_Y 1080
 # define WIN_X 1920
 # define WIN_NAME "Dsandshr's & Dmandalo's Fdf"

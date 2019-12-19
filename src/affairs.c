@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/16 16:35:56 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/19 19:38:56 by dsandshr         ###   ########.fr       */
+/*   Created: 2019/12/19 19:47:49 by dsandshr          #+#    #+#             */
+/*   Updated: 2019/12/19 19:47:51 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void		minus_z(t_mlx *data, int x, int y)
 			}
 			if (data->map[y][x] > 0)
 			{
-				if (data->map[y][x] % 2 >= 5)
+				if (data->map[y][x] % 2 == 5)
 					data->map[y][x] = PL_Z(data->map[y][x]) + 1;
 				else
 					data->map[y][x] = PL_Z(data->map[y][x]);
