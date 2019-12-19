@@ -6,7 +6,7 @@
 /*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/07 16:57:50 by dmandalo          #+#    #+#             */
-/*   Updated: 2019/12/15 19:55:46 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/19 21:17:27 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,25 @@ void		print_menu(t_mlx *data)
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 10, 245, 0x90ee90, "Zoom:+/-");
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 10, 280, 0x90ee90, \
 	"Scale: P, M");
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 10, 315, 0x90ee90, "Ex :Esc");
+	print_two_menu(data);
 	free(clr1);
 	free(clr2);
+}
+
+void		print_two_menu(t_mlx *data)
+{
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 10, 315, 0x90ee90, \
+	"Exit : Esc");
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 10, 365, 0xffffff, \
+	"3D Rotation");
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 10, 400, 0x90ee90, \
+	"Starting position : Space");
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 10, 435, 0x90ee90, \
+	"Up    : W");
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 10, 470, 0x90ee90, \
+	"Down  : S");
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 10, 505, 0x90ee90, \
+	"Left  : A");
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 10, 540, 0x90ee90, \
+	"Right : D");
 }

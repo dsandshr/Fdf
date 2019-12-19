@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   advert.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/15 21:16:39 by dmandalo          #+#    #+#             */
-/*   Updated: 2019/12/19 19:48:42 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/12/19 20:43:29 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ void			fdf_affairs(t_mlx *mlx)
 {
 	mlx = mlx_things_init(mlx);
 	draw(mlx);
-	mlx_key_hook(mlx->win_ptr, deal_key, mlx);
+	mlx_key_hook(mlx->win_ptr, many_keys, mlx);
 	mlx_loop(mlx->mlx_ptr);
 }

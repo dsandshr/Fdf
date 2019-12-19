@@ -3,39 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 19:48:06 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/19 19:48:15 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/12/19 20:49:05 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void		isometric(float *x, float *y, int z, t_mlx *data)
-{
-	float previous_x;
-    float previous_y;
-
-    previous_x = *x;
-    previous_y = *y;
-    *x = (previous_x - previous_y) * cos(0.523599);
-    *y = -z + (previous_x + previous_y) * sin(0.523599);
-}
-
-void		rot_y(float *x, float *y, int z, t_mlx *data)
-{
-	*x = *x * cos((M_PI_4 / 2) * data->angle) + z * sin((M_PI_4 / 2) * data->angle);
-	*y = *y;
-	z = (*x * -1) * sin((M_PI_4 / 2) * data->angle) + z * cos((M_PI_4 / 2) * data->angle);
-}
-
-void		rot_x(float *x, float *y, int z, t_mlx *data)
-{
-	*x = *x;
-	*y = *y * cos((M_PI_4 / 2) * data->angle) + z * sin((M_PI_4 / 2) * data->angle);
-	z = (*y * -1) * sin((M_PI_4 / 2) * data->angle) + z * cos((M_PI_4 / 2) * data->angle);
-}
 
 void		primary(t_prm m, t_mlx *data)
 {
@@ -61,39 +36,42 @@ void		primary(t_prm m, t_mlx *data)
 	}
 }
 
+void		lapse(t_mlx *data, t_prm m)
+{
+	if (data->iso == 1)
+	{
+		isometric(&m.x, &m.y, m.z, data);
+		isometric(&m.x1, &m.y1, m.z1, data);
+	}
+	if (data->iso == 2)
+	{
+		rot_x(&m.x, &m.y, m.z, data);
+		rot_x(&m.x1, &m.y1, m.z1, data);
+	}
+	if (data->iso == 3)
+	{
+		rot_y(&m.x, &m.y, m.z, data);
+		rot_y(&m.x1, &m.y1, m.z1, data);
+	}
+	primary(m, data);
+}
+
 void		prime(t_prm m, t_mlx *data)
 {
 	float	x_step;
 	float	y_step;
 	int		max;
-	float	z;
-	float	z1;
 
-	z = data->map[(int)m.y][(int)m.x];
-	z1 = data->map[(int)m.y1][(int)m.x1];
+	m.z = data->map[(int)m.y][(int)m.x];
+	m.z1 = data->map[(int)m.y1][(int)m.x1];
 	m.x *= data->zoom;
 	m.y *= data->zoom;
 	m.x1 *= data->zoom;
 	m.y1 *= data->zoom;
-	z *= data->zoom / 3;
-	z1 *= data->zoom / 3;
-	data->clr = (z || z1) ? data->clr1 : data->clr2;
-	if (data->iso == 1)
-	{
-		isometric(&m.x, &m.y, z, data);
-		isometric(&m.x1, &m.y1, z1, data);
-	}
-	if (data->iso == 2)
-	{
-		rot_x(&m.x, &m.y, z, data);
-		rot_x(&m.x1, &m.y1, z1, data);
-	}
-	if (data->iso == 3)
-	{
-		rot_y(&m.x, &m.y, z, data);
-		rot_y(&m.x1, &m.y1, z1, data);
-	}
-	primary(m, data);
+	m.z *= data->zoom / 3;
+	m.z1 *= data->zoom / 3;
+	data->clr = (m.z || m.z1) ? data->clr1 : data->clr2;
+	lapse(data, m);
 }
 
 void		draw(t_mlx *data)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 23:15:07 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/19 17:41:41 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/12/19 20:23:21 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int				check_in_map(char *str, int fd)
 	return (1);
 }
 
-void		error(int argc)
+void			error(int argc)
 {
 	if (argc == 50)
 	{
