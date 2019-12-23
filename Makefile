@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+         #
+#    By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/23 22:09:17 by dsandshr          #+#    #+#              #
-#    Updated: 2019/12/19 20:28:50 by dmandalo         ###   ########.fr        #
+#    Updated: 2019/12/23 05:24:41 by dsandshr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,11 +15,11 @@ DIR_SRCS			:= src/
 DIR_OBJS 			:= bin/
 DIR_INCLUDE_FDF 	:= include/
 DIR_INCLUDE_LIBFT	:= lib/libft/include
-DIR_INCLUDE_MLX		:= lib/minilibx_macos/
+DIR_INCLUDE_MLX		:= lib/minilibx/
 DIR_TMP				:= tmp/
 DIR_LIB				:= lib/
 DIR_LIBFT			:= lib/libft/
-DIR_MLX				:= lib/minilibx_macos/
+DIR_MLX				:= lib/minilibx/
 
 INCLUDE_LIBFT		:= libft.h
 INCLUDE_MLX			:= mlx.h
@@ -34,18 +34,18 @@ SRCS				:= main.c\
 						init_map.c\
 						error.c\
 						affairs.c\
-						draw.c \
-						menu.c \
-						advert.c \
-						isometric.c \
-						keys.c
+						advert.c\
+						draw.c\
+						isometric.c\
+						keys.c\
+						menu.c
 
 OBJS				:= $(SRCS:.c=.o)
 DIRS_INCLUDE		:= $(DIR_INCLUDE_LIBFT) $(DIR_INCLUDE_FDF) $(DIR_INCLUDE_MLX) $(DIR_INCLUDE_LINAL)
 
 INCLUDES			:= $(INCLUDE_FDF) $(INCLUDE_LIBFT) $(INCLUDE_MLX)
 
-FRAMEWORKS			:= -framework OpenGL -framework AppKit
+FRAMEWORKS			:= -lmlx -lXext -lX11
 
 CC					:= gcc -O3
 CFLAGS				:= -g
