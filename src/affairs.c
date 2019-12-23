@@ -3,33 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   affairs.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/22 20:24:23 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/11/24 00:50:44 by dsandshr         ###   ########.fr       */
+/*   Created: 2019/12/19 19:47:49 by dsandshr          #+#    #+#             */
+/*   Updated: 2019/12/19 20:55:43 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static s_mlx	*mlx_things_init(s_mlx *mlx)
+void		minus_z(t_mlx *data, int x, int y)
 {
-	if (!(mlx->mlxPtr = mlx_init()))
-		exit (-1);
-	if (!(mlx->winPtr = mlx_new_window(mlx->mlxPtr, WIN_X, WIN_Y, WIN_NAME)))
-		exit (-1);
-	if (!(mlx->imgPtr = mlx_new_image(mlx->mlxPtr, WIN_X, WIN_Y)))
-		exit (-1);
-	if (!(mlx->imgData = mlx_get_data_addr(mlx->imgPtr, &mlx->bpp,\
-		&mlx->size_l, &mlx->endian)))
-		exit (-1);
-	return (mlx);
-	
+	while (data->map[y] != NULL)
+	{
+		x = 0;
+		while (x < data->x)
+		{
+			if (data->map[y][x] < 0)
+			{
+				if (data->map[y][x] % 2 == 5)
+					data->map[y][x] = MIN_Z(data->map[y][x]) - 1;
+				else
+					data->map[y][x] = MIN_Z(data->map[y][x]);
+			}
+			if (data->map[y][x] > 0)
+			{
+				if (data->map[y][x] % 2 == 5)
+					data->map[y][x] = PL_Z(data->map[y][x]) + 1;
+				else
+					data->map[y][x] = PL_Z(data->map[y][x]);
+			}
+			x++;
+		}
+		y++;
+	}
 }
 
-void	fdf_affairs(s_fdf *fdf, s_mlx *mlx, s_map *map)
+void		plus_z(t_mlx *data, int x, int y)
 {
-	mlx = mlx_things_init(mlx);
-	
-	mlx_loop(mlx->mlxPtr);
+	while (data->map[y] != NULL)
+	{
+		x = 0;
+		while (x < data->x)
+		{
+			if (data->map[y][x] < 0)
+				data->map[y][x] *= 2;
+			if (data->map[y][x] > 0)
+				data->map[y][x] *= 2;
+			x++;
+		}
+		y++;
+	}
 }

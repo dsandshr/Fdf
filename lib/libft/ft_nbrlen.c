@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdel_split.c                                  :+:      :+:    :+:   */
+/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/25 22:46:15 by ksharlen          #+#    #+#             */
-/*   Updated: 2019/12/16 17:37:52 by dsandshr         ###   ########.fr       */
+/*   Created: 2019/12/10 19:42:01 by dmandalo          #+#    #+#             */
+/*   Updated: 2019/12/10 19:42:21 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_strdel_split(char **del)
+long		ft_nbrlen(long nb, long base)
 {
-	if (del && *del)
-	{
-		while (*del)
-		{
-			ft_strdel(&*del);
-			++del;
-		}
-	}
+	long	length;
+
+	length = 1;
+	while (ft_power_long(base, length) <= nb)
+		length++;
+	return (length);
 }

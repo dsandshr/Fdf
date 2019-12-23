@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdel_split.c                                  :+:      :+:    :+:   */
+/*   ft_wdcounter.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/25 22:46:15 by ksharlen          #+#    #+#             */
-/*   Updated: 2019/12/16 17:37:52 by dsandshr         ###   ########.fr       */
+/*   Created: 2019/11/26 15:10:37 by dmandalo          #+#    #+#             */
+/*   Updated: 2019/11/26 16:08:52 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_strdel_split(char **del)
+int		ft_wdcounter(char const *str, char c)
 {
-	if (del && *del)
+	int i;
+	int words;
+
+	words = 0;
+	i = 0;
+	while (str[i])
 	{
-		while (*del)
-		{
-			ft_strdel(&*del);
-			++del;
-		}
+		while (str[i] == c && str[i] != '\0')
+			i++;
+		if (str[i])
+			words++;
+		while (str[i] != c && str[i] != '\0')
+			i++;
 	}
+	return (words);
 }

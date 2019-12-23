@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_thisnum.c                                       :+:      :+:    :+:   */
+/*   ft_stradd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/01 18:22:00 by tlorine           #+#    #+#             */
-/*   Updated: 2019/12/14 17:33:59 by dmandalo         ###   ########.fr       */
+/*   Created: 2019/12/10 19:27:11 by dmandalo          #+#    #+#             */
+/*   Updated: 2019/12/10 19:31:05 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_thisnum(const char *line)
+char	*ft_stradd(char *str, char ch)
 {
-	int i;
+	int		len;
+	char	*new;
 
-	i = 0;
-	while (line[i] >= '0' && line[i] <= '9')
+	len = 0;
+	if (str)
 	{
-		i++;
-		if (line[i] == '\0')
-			return (1);
+		len = ft_strlen(str);
+		if (!(new = (char*)ft_strnew(len + 1)))
+			return (NULL);
+		ft_strcat(new, str);
+		ft_strdel(&str);
 	}
-	return (0);
+	else
+		new = ft_strnew(1);
+	new[0] = ch;
+	new[1] = '\0';
+	return (new);
 }

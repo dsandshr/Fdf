@@ -6,21 +6,21 @@
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/16 00:25:02 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/04 22:31:06 by dsandshr         ###   ########.fr       */
+/*   Updated: 2019/12/16 17:38:07 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static s_map *create_map(s_fdf *fdf, s_map *map)
+static		t_mlx	*create_map(t_fdf *fdf, t_mlx *map)
 {
 	if (!(map->map = (int **)malloc(sizeof(int *) * (fdf->y + 1))))
-		exit (-1);
+		exit(-1);
 	map->map[fdf->y] = NULL;
 	while (map->y != fdf->y)
 	{
 		if (!(map->map[map->y] = (int *)malloc(sizeof(int) * (fdf->x + 1))))
-			exit (-1);
+			exit(-1);
 		map->map[map->y][fdf->x] = -1;
 		map->y++;
 	}
@@ -28,10 +28,10 @@ static s_map *create_map(s_fdf *fdf, s_map *map)
 	return (map);
 }
 
-static s_fdf *write_map(s_fdf *fdf, s_map *map)
+static		t_fdf	*write_map(t_fdf *fdf, t_mlx *map)
 {
-	s_fdf *fdf_ptr;
-	
+	t_fdf	*fdf_ptr;
+
 	fdf_ptr = fdf;
 	while (fdf->next != NULL)
 		fdf = fdf->next;
@@ -51,12 +51,12 @@ static s_fdf *write_map(s_fdf *fdf, s_map *map)
 	return (fdf_ptr);
 }
 
-static s_fdf *next_step(s_fdf *fdf)
+static		t_fdf	*next_step(t_fdf *fdf)
 {
 	while (fdf->next != NULL)
 		fdf = fdf->next;
-	if (!(fdf->next = (s_fdf *)malloc(sizeof(s_fdf))))
-		exit (-1);
+	if (!(fdf->next = (t_fdf *)malloc(sizeof(t_fdf))))
+		exit(-1);
 	fdf->next->x = fdf->x;
 	fdf->next->y = fdf->y;
 	fdf->next->z = fdf->z;
@@ -65,32 +65,31 @@ static s_fdf *next_step(s_fdf *fdf)
 	return (fdf);
 }
 
-s_fdf *init_map(char **argv, s_fdf *fdf, s_map *map)
+t_fdf				*init_map(char **argv, t_fdf *fdf, t_mlx *map)
 {
-	int fd;
-	char *line;
-	char **buf;
-	s_fdf *fdf_ptr;
-	
+	int		fd;
+	char	*line;
+	char	**buf;
+	t_fdf	*fdf_ptr;
+
 	fdf_ptr = fdf;
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
 		error(BAD_MAP);
 	while (get_next_line(fd, &line) == 1)
 	{
-		buf = ft_strsplit (line, ' ');
+		buf = ft_strsplit(line, ' ');
 		fdf->x = 0;
 		while (buf[fdf->x])
 		{
 			fdf->z = ft_atoi(buf[fdf->x]);
 			fdf = next_step(fdf);
-			fdf->x++;	
+			fdf->x++;
 		}
 		fdf->y++;
 		ft_strdel_split(buf);
-		buf = NULL;
-		ft_strdel(&line);
+		free(buf);
+		free(line);
 	}
 	close(fd);
 	return (write_map(fdf_ptr, map));
 }
-	

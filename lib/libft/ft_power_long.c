@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdel_split.c                                  :+:      :+:    :+:   */
+/*   ft_power_long.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/25 22:46:15 by ksharlen          #+#    #+#             */
-/*   Updated: 2019/12/16 17:37:52 by dsandshr         ###   ########.fr       */
+/*   Created: 2019/12/10 19:56:43 by dmandalo          #+#    #+#             */
+/*   Updated: 2019/12/10 19:58:20 by dmandalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_strdel_split(char **del)
+long	ft_power_long(long nb, long pow)
 {
-	if (del && *del)
-	{
-		while (*del)
-		{
-			ft_strdel(&*del);
-			++del;
-		}
-	}
+	if (pow == 0)
+		return (1);
+	else if (pow < 0)
+		return (0);
+	return (nb * ft_pow(nb, pow - 1));
 }

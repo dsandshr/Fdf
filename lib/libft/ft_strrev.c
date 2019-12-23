@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdel_split.c                                  :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/25 22:46:15 by ksharlen          #+#    #+#             */
-/*   Updated: 2019/12/16 17:37:52 by dsandshr         ###   ########.fr       */
+/*   Created: 2019/12/10 19:54:16 by dmandalo          #+#    #+#             */
+/*   Updated: 2019/12/12 17:21:02 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_strdel_split(char **del)
+char	*ft_strrev(char *str)
 {
-	if (del && *del)
+	int		i;
+	int		length;
+	char	temp;
+
+	i = 0;
+	length = ft_strlen(str);
+	while (i < (length / 2))
 	{
-		while (*del)
-		{
-			ft_strdel(&*del);
-			++del;
-		}
+		temp = str[i];
+		str[i] = str[length - i - 1];
+		str[length - i - 1] = temp;
+		i++;
 	}
+	str[length] = '\0';
+	return (str);
 }
