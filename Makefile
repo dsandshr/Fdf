@@ -6,7 +6,7 @@
 #    By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/23 22:09:17 by dsandshr          #+#    #+#              #
-#    Updated: 2019/12/23 05:24:41 by dsandshr         ###   ########.fr        #
+#    Updated: 2019/12/23 18:32:12 by dsandshr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ vpath %.a $(DIR_LIBFT) $(DIR_MLX)
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT) $(MLX)
-	$(CC) $(CFLAGS) $(addprefix $(DIR_OBJS), $(OBJS)) $(addprefix $(DIR_LIBFT), $(LIBFT)) $(addprefix $(DIR_MLX), $(MLX)) $(NFLAGS) $@ $(FRAMEWORKS)
+	$(CC) $(CFLAGS) $(addprefix $(DIR_OBJS), $(OBJS)) -lm $(addprefix $(DIR_LIBFT), $(LIBFT)) $(addprefix $(DIR_MLX), $(MLX)) $(NFLAGS) $@ $(FRAMEWORKS)
 
 $(OBJS): %.o:%.c $(INCLUDES) | $(DIR_OBJS)
 	$(CC) $(OFLAGS) $(CFLAGS) $< $(NFLAGS) $(DIR_OBJS)$@ $(addprefix $(IFLAGS), $(DIRS_INCLUDE))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 20:24:00 by dmandalo          #+#    #+#             */
-/*   Updated: 2019/12/19 21:02:45 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/23 19:02:54 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,15 @@ void			mlx_free(t_mlx **mlx)
 
 int				keys(int key, t_mlx *data)
 {
-	if (key == KEY_P)
+	if (key == 112)
 		plus_z(data, 0, 0);
-	if (key == KEY_M)
+	if (key == 109)
 		minus_z(data, 0, 0);
-	if (key == KEY_2)
+	if (key == 50)
 		data->clr1 = rand();
-	if (key == KEY_1)
+	if (key == 49)
 		data->clr2 = rand();
-	if (key == KEY_3)
+	if (key == 51)
 	{
 		data->clr1 = rand();
 		data->clr2 = rand();
@@ -55,24 +55,24 @@ int				keys(int key, t_mlx *data)
 
 int				deal_key(int key, t_mlx *data)
 {
-	if (key == KEY_NUM_ENTR)
+	if (key == 13)
 		data->iso ^= 1;
-	if (key == KEY_NUM_PLS)
+	if (key == 112)
 		data->zoom += 1;
-	if (key == KEY_NUM_SUB)
+	if (key == 109)
 		data->zoom -= 1;
-	if (key == KEY_ESC)
+	if (key == 27)
 	{
 		mlx_free(&data);
 		exit(-1);
 	}
-	if (key == KEY_UP_ARROW)
+	if (key == KEY_NUMERIC_A)
 		data->shift_y -= 40;
-	if (key == KEY_DOWN_ARROW)
+	if (key == KEY_NUMERIC_B)
 		data->shift_y += 40;
-	if (key == KEY_LEFT_ARROW)
+	if (key == KEY_NUMERIC_D)
 		data->shift_x -= 40;
-	if (key == KEY_RIGHT_ARROW)
+	if (key == KEY_NUMERIC_C)
 		data->shift_x += 40;
 	keys(key, data);
 	return (0);
@@ -80,22 +80,22 @@ int				deal_key(int key, t_mlx *data)
 
 int				many_keys(int key, t_mlx *data)
 {
-	if (key == KEY_W)
+	if (key == 119)
 	{
 		data->iso = 2;
 		data->angle -= 0.1;
 	}
-	if (key == KEY_S)
+	if (key == 115)
 	{
 		data->iso = 2;
 		data->angle += 0.1;
 	}
-	if (key == KEY_A)
+	if (key == 97)
 	{
 		data->iso = 3;
 		data->angle -= 0.1;
 	}
-	if (key == KEY_D)
+	if (key == 100)
 	{
 		data->iso = 3;
 		data->angle += 0.1;

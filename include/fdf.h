@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dmandalo <dmandalo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dsandshr <dsandshr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/15 22:57:24 by dsandshr          #+#    #+#             */
-/*   Updated: 2019/12/19 21:18:06 by dmandalo         ###   ########.fr       */
+/*   Updated: 2019/12/23 18:44:29 by dsandshr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 
 # include "mlx.h"
 # include "libft.h"
-# include "keymap.h"
+//# include "keymap.h" It's for mac
+# include "keymap_linux.h"
 # include <math.h>
 
 /*

@@ -1,3 +1,6 @@
+INC=/usr/include
+HT=Linux
+DOCP=do_cp
 ##
 ## Makefile for MiniLibX in /home/boulon/work/c/raytraceur/minilibx
 ##
@@ -10,9 +13,7 @@
 
 ## Please use configure script
 
-INC		=	/usr/include
-HT		=	Linux
-DOCP	=	do_cp
+
 
 CC		=	gcc
 
@@ -49,7 +50,7 @@ SRC		=	mlx_init.c \
 OBJ		=	$(SRC:.c=.o)
 CFLAGS	=	-O3 -I$(INC)
 
-DESTDIR = /usr/local
+DESTDIR	=	/usr/local
 
 all: $(NAME) $(DOCP)
 
@@ -59,7 +60,6 @@ $(NAME): $(OBJ)
 
 do_cp:
 	cp $(NAME) libmlx_$(HT).a
-
 
 clean:
 	rm -f $(OBJ) $(NAME) *~ core *.core
